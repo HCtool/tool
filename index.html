@@ -294,7 +294,7 @@ body { background: #f1f5f9; padding: 20px; } /* Added for display preview */
         <button class="pt-req-pill" onclick="ptHandlePill('unable_to_process', this)">Unable2Process</button>
         <button class="pt-req-pill" onclick="ptHandlePill('submit_a_form', this)">Old Verified</button>
         <button class="pt-req-pill" onclick="ptHandlePill('out', this)">New Verified</button>
-        <button class="pt-req-pill" onclick="ptHandlePill('standing', this)">Extra</button>
+        <button class="pt-req-pill" onclick="ptHandlePill('standing', this)">LCHTERM</button>
       </div>
       <button id="pt-review" class="pt-review-btn" onclick="ptReviewFlash()">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6;"><path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>
@@ -481,6 +481,12 @@ body { background: #f1f5f9; padding: 20px; } /* Added for display preview */
     document.querySelectorAll('.pt-req-pill').forEach(p => p.classList.remove('selected'));
     el.classList.add('selected');
 
+    if (action === 'standing') {
+      var lch = document.getElementById('pt-lch').value.trim();
+      ptCopy('Please terminate agent code: ' + lch + '. Code no longer needed.');
+      return;
+    }
+
     if (action === 'out') {
       var t1 = document.getElementById('pt-t1').value.trim();
       var t2 = document.getElementById('pt-t2').value.trim();
@@ -523,8 +529,7 @@ body { background: #f1f5f9; padding: 20px; } /* Added for display preview */
     var map = {
       incorrect_signer: "Unable to process\nExisting recruiter signature needed - please provide revised recruiter page signed by any of the following existing signers to authorize the change request: \nPosted O/S in ELC UI\nFile sent to delay",
       unable_to_process: "Unable to process\n\nPosted O/S in ELC UI\nFile sent to delay",
-      submit_a_form: "Verified agent's set up already updated.\nFile closed",
-      standing: "CIN"
+      submit_a_form: "Verified agent's set up already updated.\nFile closed"
     };
     if (map[action]) ptCopy(map[action]);
   };
