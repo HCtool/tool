@@ -7,27 +7,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Light Mode (Aurora Glass) Variables */
+    /* Light Mode (Meadow Glass) Variables */
     --text-main: #1e293b;
-    --text-muted: #64748b;
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.6);
-    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
-    --input-bg: rgba(255, 255, 255, 0.8);
-    --tab-bg: rgba(255, 255, 255, 0.4);
-    --pill-bg: rgba(255, 255, 255, 0.5);
-    --hover-bg: rgba(255, 255, 255, 0.3);
+    --text-muted: #475569;
     
-    --accent: #6366f1;
-    --accent-glow: rgba(99, 102, 241, 0.4);
-    --danger: #f43f5e;
-    --danger-soft: rgba(244, 63, 94, 0.1);
-    --danger-border: rgba(244, 63, 94, 0.2);
-    --lrp: #8b5cf6;
-    --lrp-soft: rgba(139, 92, 246, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    --input-bg: rgba(255, 255, 255, 0.7);
+    --tab-bg: rgba(255, 255, 255, 0.4);
+    --pill-bg: rgba(255, 255, 255, 0.6);
+    --hover-bg: rgba(255, 255, 255, 0.5);
+    
+    --accent: #334155; /* Slate 700 */
+    --accent-glow: rgba(51, 65, 85, 0.2);
+    --danger: #e11d48; /* Rose 600 */
+    --danger-soft: rgba(225, 29, 72, 0.1);
+    --danger-border: rgba(225, 29, 72, 0.2);
+    --lrp: #475569; /* Slate 600 */
+    --lrp-soft: rgba(71, 85, 105, 0.1);
 
-    --bg-style: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    --bg-anim: gradientBG 15s ease infinite;
+    /* Muted Meadow Background */
+    --bg-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80');
+    --bg-overlay: rgba(241, 245, 249, 0.5); /* Soft white/slate overlay to mute colors */
 
     --radius-sm: 10px;
     --radius-md: 16px;
@@ -35,27 +37,28 @@
   }
 
   body.dark-mode {
-    /* Dark Mode (Midnight Glass) Variables */
+    /* Dark Mode (Midnight Meadow) Variables */
     --text-main: #f8fafc;
-    --text-muted: #cbd5e1;
-    --glass-bg: rgba(15, 23, 42, 0.7);
+    --text-muted: #94a3b8;
+    
+    --glass-bg: rgba(15, 23, 42, 0.65);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
     --input-bg: rgba(15, 23, 42, 0.5);
     --tab-bg: rgba(15, 23, 42, 0.4);
     --pill-bg: rgba(30, 41, 59, 0.6);
-    --hover-bg: rgba(255, 255, 255, 0.05);
+    --hover-bg: rgba(255, 255, 255, 0.08);
 
-    --accent: #818cf8;
-    --accent-glow: rgba(129, 140, 248, 0.25);
-    --danger: #fb7185;
-    --danger-soft: rgba(244, 63, 94, 0.15);
-    --danger-border: rgba(244, 63, 94, 0.3);
-    --lrp: #a78bfa;
-    --lrp-soft: rgba(139, 92, 246, 0.15);
+    --accent: #cbd5e1; /* Slate 300 */
+    --accent-glow: rgba(203, 213, 225, 0.2);
+    --danger: #fb7185; /* Rose 400 */
+    --danger-soft: rgba(251, 113, 133, 0.15);
+    --danger-border: rgba(251, 113, 133, 0.3);
+    --lrp: #94a3b8; /* Slate 400 */
+    --lrp-soft: rgba(148, 163, 184, 0.15);
 
-    --bg-style: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    --bg-anim: none;
+    /* Darker overlay for the same meadow image */
+    --bg-overlay: rgba(2, 6, 23, 0.85); 
   }
   
   * { 
@@ -66,22 +69,17 @@
 
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--bg-style);
-    background-size: 400% 400%;
-    animation: var(--bg-anim);
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--text-main);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     padding: 60px 16px 40px;
-    transition: background 0.5s ease, color 0.3s ease;
-  }
-
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    transition: background-image 0.5s ease, color 0.3s ease;
   }
 
   /* --- Theme Toggle Button --- */
@@ -94,8 +92,8 @@
     border-radius: 50%;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     color: var(--text-main);
     display: flex;
     align-items: center;
@@ -115,8 +113,8 @@
     width: 100%;
     max-width: 520px;
     background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -318,7 +316,7 @@
   .pill.selected[data-name="Delay03"] {
     background: var(--danger);
     border-color: var(--danger);
-    box-shadow: 0 6px 16px rgba(244, 63, 94, 0.4);
+    box-shadow: 0 6px 16px rgba(225, 29, 72, 0.3);
   }
 
   .lrp-row {
@@ -343,7 +341,7 @@
   .lrp-btn:hover {
     background: var(--lrp);
     color: #fff;
-    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 6px 16px rgba(51, 65, 85, 0.2);
     transform: translateY(-2px);
   }
 
@@ -396,6 +394,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
+  }
+
+  body.dark-mode .toast {
+    background: #f8fafc;
+    color: #0f172a;
   }
 
   .toast.show {
@@ -464,8 +467,8 @@
     </div>
 
     <div class="pills" id="pillGroup">
-      <button class="pill" data-name="Vm">VM</button>
-      <button class="pill" data-name="No VM">No Vm</button>
+      <button class="pill" data-name="VM">Voicemail</button>
+      <button class="pill" data-name="No VM">No VM</button>
       <button class="pill" data-name="Agreed">Confirm</button>
       <button class="pill" data-name="Delay03">Del 3</button>
       <button class="pill" data-name="Nil">Nil</button>
@@ -497,7 +500,7 @@
     <div class="row">
       <div class="field">
         <label for="upField">UP</label>
-        <input type="text" id="upField" placeholder="00000">
+        <input type="text" id="upField" placeholder="...">
       </div>
       <div class="field">
         <label for="pidField">PID Code</label>
@@ -506,7 +509,7 @@
     </div>
 
     <div class="pills" id="paymentBtnGroup" style="border-top:none; padding-top:0;">
-      <button class="pill payment-btn" id="normBtn" data-name="NORM">Copy Norm</button>
+      <button class="pill payment-btn" id="normBtn" data-name="NORM">Copy Normal</button>
       <button class="pill payment-btn" id="recBtn" data-name="REC">Copy Rec</button>
     </div>
   </div>
@@ -518,13 +521,13 @@
         <circle cx="12" cy="12" r="10"></circle>
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg><br>
-      T&amp;H tab coming soon.
+      T&amp;H tracking modules coming soon.
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
   <span id="toastMsg"></span>
 </div>
 
@@ -537,10 +540,8 @@
     document.body.classList.toggle('dark-mode');
     
     if (document.body.classList.contains('dark-mode')) {
-      // Switch to Sun icon (to indicate clicking it goes to light mode)
       themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
     } else {
-      // Switch back to Moon icon
       themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
     }
   });
