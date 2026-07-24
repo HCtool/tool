@@ -29,21 +29,21 @@
 
     /* Muted Meadow Background */
     --bg-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80');
-    --bg-overlay: rgba(241, 245, 249, 0.5); /* Soft white/slate overlay to mute colors */
+    --bg-overlay: rgba(241, 245, 249, 0.5); /* Soft white/slate overlay */
 
-    --radius-sm: 10px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
   }
 
   body.dark-mode {
-    /* Dark Mode (Midnight Meadow) Variables */
+    /* Dark Mode (Starry Night) Variables */
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     
     --glass-bg: rgba(15, 23, 42, 0.65);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
     --input-bg: rgba(15, 23, 42, 0.5);
     --tab-bg: rgba(15, 23, 42, 0.4);
     --pill-bg: rgba(30, 41, 59, 0.6);
@@ -57,8 +57,9 @@
     --lrp: #94a3b8; /* Slate 400 */
     --lrp-soft: rgba(148, 163, 184, 0.15);
 
-    /* Darker overlay for the same meadow image */
-    --bg-overlay: rgba(2, 6, 23, 0.85); 
+    /* Starry Night Background */
+    --bg-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80');
+    --bg-overlay: rgba(2, 6, 23, 0.4); /* Darker, slightly transparent overlay for stars */
   }
   
   * { 
@@ -78,17 +79,17 @@
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    padding: 60px 16px 40px;
+    padding: clamp(20px, 4vw, 60px) 16px; /* Dynamic padding */
     transition: background-image 0.5s ease, color 0.3s ease;
   }
 
   /* --- Theme Toggle Button --- */
   .theme-toggle {
     position: fixed;
-    top: 20px;
-    right: 24px;
-    width: 44px;
-    height: 44px;
+    top: clamp(10px, 3vw, 20px);
+    right: clamp(10px, 3vw, 24px);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -111,7 +112,7 @@
 
   .card {
     width: 100%;
-    max-width: 520px;
+    max-width: 480px; /* Slightly narrower overall card */
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -120,7 +121,6 @@
     overflow: hidden;
     box-shadow: var(--glass-shadow);
     position: relative;
-    padding-bottom: 10px;
     transition: all 0.3s ease;
   }
 
@@ -128,18 +128,17 @@
     display: flex;
     background: var(--tab-bg);
     border-bottom: 1px solid var(--glass-border);
-    padding: 8px 8px 0 8px;
+    padding: 6px 6px 0 6px;
     gap: 4px;
-    transition: all 0.3s ease;
   }
 
   .tab-btn {
     flex: 1;
-    padding: 14px 8px;
+    padding: 12px 6px;
     text-align: center;
     background: transparent;
     border: none;
-    font-size: 14px;
+    font-size: 12.5px; /* Smaller font */
     font-weight: 700;
     color: var(--text-muted);
     cursor: pointer;
@@ -148,7 +147,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
   }
 
   .tab-btn:hover { 
@@ -164,14 +163,14 @@
 
   .tab-content { 
     display: none; 
-    padding: 32px 28px; 
+    padding: 24px 20px; /* Tighter padding inside card */
     animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tab-content.active { display: block; }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -179,25 +178,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
   }
 
   .tab-header h2 {
-    font-size: 20px;
+    font-size: 17px; /* Smaller font */
     margin: 0;
     color: var(--text-main);
     font-weight: 800;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
   }
 
   .clear-btn {
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--danger-border);
     background: var(--danger-soft);
     color: var(--danger);
-    font-size: 13px;
+    font-size: 11px; /* Smaller font */
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.2s ease;
   }
@@ -205,28 +206,30 @@
   .clear-btn:hover {
     background: var(--danger);
     color: #fff;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
 
   label {
     display: block;
-    font-size: 13px;
+    font-size: 11px; /* Smaller font */
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     color: var(--text-muted);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
-  .field { margin-bottom: 20px; }
+  .field { margin-bottom: 16px; }
   
   .row {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .row .field { margin-bottom: 0; flex: 1; }
-  .row .side-field { flex: 0 0 130px; }
+  .row .side-field { flex: 0 0 110px; } /* Slimmer side fields */
 
   input[type="text"],
   input[type="number"],
@@ -234,10 +237,10 @@
   select,
   textarea {
     width: 100%;
-    padding: 14px 16px;
+    padding: 10px 12px; /* Slimmer text boxes */
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-sm);
-    font-size: 15px;
+    font-size: 13px; /* Smaller text inside boxes */
     font-weight: 500;
     background: var(--input-bg);
     color: var(--text-main);
@@ -249,7 +252,7 @@
   input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 4px var(--accent-glow), inset 0 2px 4px rgba(0,0,0,0.01);
+    box-shadow: 0 0 0 3px var(--accent-glow), inset 0 1px 2px rgba(0,0,0,0.01);
   }
 
   input[readonly] {
@@ -271,85 +274,84 @@
   }
 
   textarea {
-    min-height: 120px;
+    min-height: 90px; /* Reduced height */
     resize: vertical;
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   .pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin: 28px 0 20px;
-    padding: 24px 0 8px;
+    gap: 8px; /* Tighter gap */
+    margin: 20px 0 16px;
+    padding: 18px 0 6px;
     border-top: 1px solid var(--glass-border);
   }
 
   .pill {
-    padding: 10px 20px;
+    padding: 8px 14px;
     border-radius: 999px;
     border: 1px solid var(--glass-border);
     background: var(--pill-bg);
     color: var(--text-main);
-    font-size: 13px;
+    font-size: 11.5px; /* Smaller font */
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .pill:hover { 
     border-color: var(--accent); 
     color: var(--accent);
     background: var(--glass-bg);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
   }
 
   .pill.selected {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
-    box-shadow: 0 6px 16px var(--accent-glow);
-    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--accent-glow);
+    transform: translateY(-1px);
   }
 
   .pill.selected[data-name="Delay03"] {
     background: var(--danger);
     border-color: var(--danger);
-    box-shadow: 0 6px 16px rgba(225, 29, 72, 0.3);
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
   }
 
   .lrp-row {
-    padding: 0 0 24px;
+    padding: 0 0 20px;
     border-bottom: 1px solid var(--glass-border);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .lrp-btn {
     width: 100%;
-    padding: 14px;
+    padding: 10px;
     border-radius: var(--radius-sm);
     border: 2px dashed var(--lrp);
     background: var(--lrp-soft);
     color: var(--lrp);
-    font-size: 15px;
+    font-size: 13px; /* Smaller font */
     font-weight: 800;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   .lrp-btn:hover {
     background: var(--lrp);
     color: #fff;
-    box-shadow: 0 6px 16px rgba(51, 65, 85, 0.2);
-    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(51, 65, 85, 0.2);
+    transform: translateY(-1px);
   }
 
   .payment-btn {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
-    padding: 12px 28px;
   }
 
   .payment-btn:hover { 
@@ -365,10 +367,10 @@
 
   .placeholder {
     color: var(--text-muted);
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
     text-align: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
     background: var(--tab-bg);
     border-radius: var(--radius-md);
     border: 2px dashed var(--glass-border);
@@ -376,20 +378,20 @@
 
   .toast {
     position: fixed;
-    bottom: 40px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%) translateY(20px) scale(0.9);
     background: #1e293b;
     color: #fff;
-    padding: 14px 28px;
+    padding: 10px 20px;
     border-radius: 999px;
-    font-size: 14px;
+    font-size: 12.5px; /* Smaller font */
     font-weight: 700;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 100;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     text-align: center;
     display: flex;
     align-items: center;
@@ -405,13 +407,35 @@
     opacity: 1;
     transform: translateX(-50%) translateY(0) scale(1);
   }
+
+  /* --- Responsive Layout for Mobile --- */
+  @media (max-width: 480px) {
+    .row {
+      flex-direction: column;
+      gap: 12px;
+    }
+    .row .side-field {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+    .tab-content {
+      padding: 20px 16px;
+    }
+    .tabs {
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      font-size: 11.5px;
+      padding: 10px 4px;
+    }
+  }
 </style>
 </head>
 <body>
 
 <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
   <!-- Sun Icon (Default) -->
-  <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
   </svg>
 </button>
@@ -419,15 +443,15 @@
 <div class="card">
   <div class="tabs">
     <button class="tab-btn active" data-tab="call">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
       Call
     </button>
     <button class="tab-btn" data-tab="payment">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
       Paid
     </button>
     <button class="tab-btn" data-tab="th">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
       T&amp;H
     </button>
   </div>
@@ -527,7 +551,7 @@
 </div>
 
 <div class="toast" id="toast">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
   <span id="toastMsg"></span>
 </div>
 
