@@ -4,50 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>H&C Personal Tool</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.8);
-    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
-    --input-bg: rgba(255, 255, 255, 0.8);
-    --accent: #6366f1;
-    --accent-glow: rgba(99, 102, 241, 0.4);
-    --danger: #f43f5e;
-    --danger-glow: rgba(244, 63, 94, 0.4);
-    --warning: #f59e0b;
-    --warning-glow: rgba(245, 158, 11, 0.4);
-    --success: #10b981;
-    --success-glow: rgba(16, 185, 129, 0.4);
+    /* iOS Light Mode Colors */
+    --text-main: #000000;
+    --text-muted: #3c3c4399; /* iOS Secondary Label */
+    --glass-bg: rgba(250, 250, 250, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.6);
+    --input-border: rgba(0, 0, 0, 0.04);
+    --btn-bg: rgba(0, 0, 0, 0.05);
+    
+    /* iOS System Colors */
+    --accent: #007AFF; /* iOS Blue */
+    --accent-hover: #005fcc;
+    --danger: #FF3B30; /* iOS Red */
+    --warning: #FF9500; /* iOS Orange */
+    --success: #34C759; /* iOS Green */
+    
     --radius-sm: 10px;
-    --radius-md: 16px;
+    --radius-md: 14px;
     --radius-lg: 24px;
-    --bg-animation: gradientBG 15s ease infinite;
   }
 
-  /* Dark Mode Overrides */
+  /* iOS Dark Mode Overrides */
   body.dark-mode {
-    background: #0f172a;
-    --bg-animation: none;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --glass-bg: rgba(30, 41, 59, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    --input-bg: rgba(15, 23, 42, 0.6);
-    --accent: #818cf8;
-    --accent-glow: rgba(129, 140, 248, 0.3);
+    /* Deep abstract fluid background */
+    background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat fixed !important;
+    
+    --text-main: #FFFFFF;
+    --text-muted: #ebebf599; 
+    --glass-bg: rgba(28, 28, 30, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --input-bg: rgba(0, 0, 0, 0.25);
+    --input-border: rgba(255, 255, 255, 0.1);
+    --btn-bg: rgba(255, 255, 255, 0.1);
+    
+    --accent: #0A84FF; /* iOS Dark Blue */
+    --accent-hover: #006ee6;
+    --danger: #FF453A; /* iOS Dark Red */
+    --warning: #FF9F0A;
+    --success: #30D158;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   body { 
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: var(--bg-animation);
+    /* Native Apple System Fonts */
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    
+    /* Vibrant abstract mesh background */
+    background: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat fixed;
     color: var(--text-main);
     display: flex;
     justify-content: center;
@@ -55,289 +64,246 @@
     min-height: 100vh;
     padding: 40px 20px; 
     transition: background 0.5s ease;
+    -webkit-font-smoothing: antialiased;
   }
 
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
+  /* Core iOS Glass Panel */
   .pt-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     width: 100%;
     max-width: 640px;
     box-shadow: var(--glass-shadow);
-    overflow: visible; 
     position: relative;
     transition: all 0.3s ease;
   }
 
   /* Header */
   .pt-header {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid var(--glass-border);
-    padding: 24px 28px;
+    padding: 20px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     transition: all 0.3s ease;
   }
-  body.dark-mode .pt-header { background: rgba(15, 23, 42, 0.4); }
+  body.dark-mode .pt-header { background: rgba(0, 0, 0, 0.1); }
 
-  .pt-header-left { display: flex; align-items: center; gap: 16px; }
+  .pt-header-left { display: flex; align-items: center; gap: 14px; }
   .pt-header-icon {
-    width: 48px; height: 48px;
+    width: 46px; height: 46px;
     background: var(--input-bg);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    border-radius: 14px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     font-size: 22px;
     transition: all 0.3s ease;
   }
-  .pt-title { color: var(--text-main); font-size: 20px; font-weight: 800; letter-spacing: -0.5px; transition: color 0.3s; }
-  .pt-subtitle { color: var(--text-muted); font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 2px; transition: color 0.3s; }
+  .pt-title { color: var(--text-main); font-size: 22px; font-weight: 700; letter-spacing: -0.4px; transition: color 0.3s; }
+  .pt-subtitle { color: var(--text-muted); font-size: 13px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; margin-top: 2px; transition: color 0.3s; }
 
   /* Header Buttons */
   .pt-btn-clear, .pt-btn-newcode, .pt-btn-help, .pt-btn-theme {
-    background: var(--input-bg); 
-    border: 1px solid var(--glass-border);
+    background: var(--btn-bg); 
+    border: none;
     color: var(--text-main); 
     border-radius: var(--radius-sm); 
-    padding: 10px 16px; 
-    font-size: 13px; 
-    font-weight: 700;
+    padding: 8px 14px; 
+    font-size: 14px; 
+    font-weight: 600;
     cursor: pointer; 
-    transition: all 0.3s ease; 
+    transition: all 0.2s ease; 
     font-family: inherit;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
   }
   
   .pt-btn-theme, .pt-btn-help {
     border-radius: 50%;
-    width: 36px; height: 36px; padding: 0;
-    font-size: 15px; font-weight: 800;
+    width: 32px; height: 32px; padding: 0;
+    font-size: 15px; font-weight: 600;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
 
-  /* Light mode specific hover states */
-  .pt-btn-clear { background: rgba(244, 63, 94, 0.1); color: var(--danger); border-color: rgba(244, 63, 94, 0.2); }
-  .pt-btn-clear:hover { background: var(--danger); color: #fff; box-shadow: 0 4px 12px var(--danger-glow); transform: translateY(-2px); }
-  .pt-btn-newcode:hover { background: #fff; color: var(--warning); border-color: var(--warning); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-  .pt-btn-theme:hover, .pt-btn-help:hover { background: #fff; color: var(--accent); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-
-  /* Dark mode specific hover states */
-  body.dark-mode .pt-btn-clear { background: rgba(244, 63, 94, 0.15); color: #fda4af; border-color: rgba(244, 63, 94, 0.3); }
-  body.dark-mode .pt-btn-clear:hover { background: var(--danger); color: #fff; }
-  body.dark-mode .pt-btn-newcode:hover, body.dark-mode .pt-btn-theme:hover, body.dark-mode .pt-btn-help:hover {
-    background: rgba(255,255,255,0.1); color: var(--text-main); border-color: rgba(255,255,255,0.3);
+  .pt-btn-clear:hover, .pt-btn-newcode:hover, .pt-btn-theme:hover, .pt-btn-help:hover { 
+    filter: brightness(0.9); transform: scale(0.97); 
+  }
+  body.dark-mode .pt-btn-clear:hover, body.dark-mode .pt-btn-newcode:hover, body.dark-mode .pt-btn-theme:hover, body.dark-mode .pt-btn-help:hover { 
+    filter: brightness(1.2); 
   }
 
+  .pt-btn-clear { color: var(--danger); }
   .pt-btn-newcode.active {
-    background: var(--warning); border-color: var(--warning); color: #fff;
-    box-shadow: 0 6px 16px var(--warning-glow); transform: translateY(-2px);
+    background: var(--warning); color: #fff;
   }
 
   /* Help Modal */
   .pt-help-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4);
+    display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4);
     z-index: 1000; align-items: center; justify-content: center; padding: 20px;
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
   .pt-help-overlay.open { display: flex; animation: pt-fade 0.2s ease; }
   @keyframes pt-fade { from { opacity: 0; } to { opacity: 1; } }
   
   .pt-help-modal {
-    background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border);
+    background: var(--glass-bg); backdrop-filter: blur(30px) saturate(200%); -webkit-backdrop-filter: blur(30px) saturate(200%); 
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg); max-width: 420px; width: 100%;
-    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     position: relative;
   }
   .pt-help-modal img { width: 100%; display: block; }
   .pt-help-close {
-    position: absolute; top: 12px; right: 12px; width: 36px; height: 36px;
-    border-radius: 50%; border: 1px solid var(--glass-border); background: var(--input-bg); color: var(--text-main);
-    font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: absolute; top: 12px; right: 12px; width: 32px; height: 32px;
+    border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: #fff;
+    font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s ease; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
-  .pt-help-close:hover { background: var(--danger); color: #fff; border-color: var(--danger); transform: scale(1.05); }
+  .pt-help-close:hover { background: rgba(0,0,0,0.7); transform: scale(1.05); }
 
   /* Body & Layout */
-  .pt-body { padding: 32px 28px; }
+  .pt-body { padding: 28px 24px; }
   .pt-section-label {
-    font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--text-muted); margin: 24px 0 12px; padding-left: 2px; transition: color 0.3s;
+    font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-muted); margin: 24px 0 10px; padding-left: 4px; transition: color 0.3s;
   }
   .pt-section-label:first-child { margin-top: 0; }
 
   /* Inputs & Rows */
   .pt-row {
-    margin-bottom: 12px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
-    background: rgba(255, 255, 255, 0.3); padding: 4px 12px; border-radius: var(--radius-sm);
-    border: 1px solid var(--glass-border); transition: all 0.3s;
+    margin-bottom: 1px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+    background: var(--input-bg); padding: 8px 16px; border: 1px solid var(--input-border); 
+    transition: all 0.3s;
   }
-  body.dark-mode .pt-row { background: rgba(15, 23, 42, 0.3); }
   
-  .pt-label { font-size: 13px; font-weight: 700; color: var(--text-main); white-space: nowrap; width: 160px; transition: color 0.3s; }
+  /* iOS Grouped List Style */
+  .pt-row:first-of-type { border-radius: var(--radius-md) var(--radius-md) 0 0; border-bottom: none; }
+  .pt-row:nth-of-type(2) { border-radius: 0; border-bottom: none; }
+  .pt-row:nth-of-type(3) { border-radius: 0 0 var(--radius-md) var(--radius-md); margin-bottom: 16px; }
+  
+  .pt-label { font-size: 15px; font-weight: 500; color: var(--text-main); white-space: nowrap; width: 160px; transition: color 0.3s; }
   
   .pt-input {
-    padding: 12px 14px; border: 1px solid var(--glass-border); border-radius: var(--radius-sm); flex: 1; min-width: 80px;
-    outline: none; font-size: 14px; font-weight: 600; font-family: inherit; background: var(--input-bg); color: var(--text-main);
-    text-transform: uppercase; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    padding: 8px 12px; border: none; border-radius: 6px; flex: 1; min-width: 80px;
+    outline: none; font-size: 15px; font-weight: 400; font-family: inherit; 
+    background: transparent; color: var(--text-main);
+    text-transform: uppercase; transition: all 0.3s ease; text-align: right;
   }
-  .pt-input:focus { border-color: var(--accent); background: var(--glass-bg); box-shadow: 0 0 0 4px var(--accent-glow), inset 0 2px 4px rgba(0,0,0,0.01); }
-  body.dark-mode .pt-input:focus { background: #1e293b; }
-  .pt-input::placeholder { text-transform: none; color: #94a3b8; font-weight: 500; }
+  .pt-input::placeholder { text-transform: none; color: var(--text-muted); font-weight: 400; }
+  
+  /* Standalone Inputs */
+  .pt-input-standalone {
+    background: var(--input-bg); border: 1px solid var(--input-border); 
+    border-radius: var(--radius-sm); padding: 12px 14px; text-align: left;
+  }
 
   /* Date Picker */
   .pt-date-row {
     display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.4); border: 1px solid var(--glass-border); border-radius: var(--radius-md);
-    position: relative; transition: all 0.3s;
+    background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-md);
+    position: relative; transition: all 0.3s; justify-content: space-between;
   }
-  body.dark-mode .pt-date-row { background: rgba(15, 23, 42, 0.3); }
 
   .pt-date-label {
-    font-size: 14px; font-weight: 700; color: var(--text-main); white-space: nowrap;
+    font-size: 15px; font-weight: 500; color: var(--text-main); white-space: nowrap;
     cursor: pointer; user-select: none; transition: color 0.2s;
     display: flex; align-items: center; gap: 8px;
   }
-  .pt-date-label:hover { color: var(--accent); }
-  .pt-date-label .cal-icon { font-size: 18px; }
-  
   .pt-date-input {
-    flex: 1; padding: 10px 14px; border: 1px solid var(--glass-border); border-radius: var(--radius-sm);
-    outline: none; font-size: 14px; font-weight: 600; font-family: inherit; background: var(--input-bg); color: var(--text-main);
-    transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    width: 120px; padding: 8px 12px; border: none; border-radius: 8px;
+    outline: none; font-size: 15px; font-weight: 500; font-family: inherit; 
+    background: var(--btn-bg); color: var(--accent); text-align: center;
+    transition: all 0.3s ease; cursor: pointer;
   }
-  .pt-date-input:focus { border-color: var(--accent); background: var(--glass-bg); box-shadow: 0 0 0 4px var(--accent-glow); }
-  body.dark-mode .pt-date-input:focus { background: #1e293b; }
 
   /* Calendar Popup */
   .pt-cal-popup {
-    display: none; position: absolute; top: calc(100% + 8px); left: 0; z-index: 999;
-    background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: var(--radius-md);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 16px; min-width: 280px; transition: all 0.3s;
+    display: none; position: absolute; top: calc(100% + 8px); right: 0; z-index: 999;
+    background: var(--glass-bg); backdrop-filter: blur(30px) saturate(200%); -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid var(--glass-border); border-radius: var(--radius-md);
+    box-shadow: var(--glass-shadow); padding: 16px; min-width: 280px; transition: all 0.3s;
   }
-  body.dark-mode .pt-cal-popup { background: rgba(30, 41, 59, 0.98); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-  
-  .pt-cal-popup.open { display: block; animation: pt-slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
-  @keyframes pt-slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+  .pt-cal-popup.open { display: block; animation: pt-scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1); transform-origin: top right; }
+  @keyframes pt-scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   
   .pt-cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .pt-cal-nav button {
-    background: rgba(15, 23, 42, 0.05); border: none; border-radius: 8px; cursor: pointer;
-    font-size: 18px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-    color: var(--text-main); transition: all 0.2s ease;
+    background: var(--btn-bg); border: none; border-radius: 50%; cursor: pointer;
+    font-size: 16px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+    color: var(--accent); transition: all 0.2s ease; font-weight: bold;
   }
-  body.dark-mode .pt-cal-nav button { background: rgba(255, 255, 255, 0.05); }
-  .pt-cal-nav button:hover { background: rgba(129, 140, 248, 0.2); }
-  
-  .pt-cal-month { font-size: 14px; font-weight: 800; color: var(--text-main); transition: color 0.3s; }
+  .pt-cal-month { font-size: 15px; font-weight: 600; color: var(--text-main); transition: color 0.3s; }
   .pt-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-  .pt-cal-dow { text-align: center; font-size: 11px; font-weight: 800; color: var(--text-muted); padding: 4px 0; transition: color 0.3s; }
+  .pt-cal-dow { text-align: center; font-size: 12px; font-weight: 600; color: var(--text-muted); padding: 4px 0; transition: color 0.3s; }
   
   .pt-cal-day {
-    text-align: center; font-size: 13px; font-weight: 600; padding: 8px 2px; border-radius: 8px;
+    text-align: center; font-size: 15px; font-weight: 400; padding: 8px 2px; border-radius: 50%;
     cursor: pointer; color: var(--text-main); transition: all 0.2s ease;
   }
-  .pt-cal-day:hover { background: rgba(99, 102, 241, 0.1); color: var(--accent); }
-  body.dark-mode .pt-cal-day:hover { background: rgba(255, 255, 255, 0.1); }
-  
-  .pt-cal-day.today { font-weight: 800; color: var(--accent); background: rgba(99, 102, 241, 0.15); }
-  .pt-cal-day.selected { background: var(--accent); color: #fff; font-weight: 800; box-shadow: 0 4px 10px var(--accent-glow); }
+  .pt-cal-day:hover { background: var(--btn-bg); color: var(--accent); }
+  .pt-cal-day.today { font-weight: 600; color: var(--accent); background: rgba(0, 122, 255, 0.1); }
+  .pt-cal-day.selected { background: var(--accent); color: #fff; font-weight: 600; }
   .pt-cal-day.empty { cursor: default; background: none; }
 
   /* Confirmation Alert Button */
   #pt-confirm {
     width: 100%; margin: 16px 0; padding: 14px 16px; 
-    background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: var(--radius-sm); 
-    cursor: pointer; font-size: 14px; font-weight: 700; color: var(--danger); font-family: inherit; text-align: left;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; gap: 8px;
+    background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-sm); 
+    cursor: pointer; font-size: 15px; font-weight: 600; color: var(--danger); font-family: inherit; text-align: left;
+    transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  #pt-confirm:hover { background: rgba(244, 63, 94, 0.15); transform: translateY(-1px); }
-  #pt-confirm.active {
-    background: var(--success); border-color: var(--success); color: #fff;
-    box-shadow: 0 6px 16px var(--success-glow); transform: translateY(-2px);
-  }
+  #pt-confirm.active { background: var(--success); color: #fff; border-color: transparent; }
 
   /* Pills General */
-  .pt-pills-wrap { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .pt-pills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 
   /* Work Objects Pills & Req Pills */
   .pt-work-pill, .pt-req-pill {
-    padding: 10px 20px; border-radius: 999px; border: 1px solid var(--glass-border); 
-    background: var(--input-bg); color: var(--text-muted); font-size: 12px; font-weight: 700; 
-    cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-family: inherit;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    padding: 8px 16px; border-radius: 20px; border: 1px solid var(--glass-border); 
+    background: var(--input-bg); color: var(--text-main); font-size: 13px; font-weight: 500; 
+    cursor: pointer; transition: all 0.2s ease; font-family: inherit;
   }
   
-  .pt-work-pill:hover, .pt-req-pill:hover { 
-    background: var(--glass-bg); border-color: var(--accent); color: var(--accent); 
-    transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-  }
-  body.dark-mode .pt-work-pill:hover, body.dark-mode .pt-req-pill:hover {
-    background: rgba(255,255,255,0.1); color: var(--text-main);
-  }
-  
-  .pt-work-pill.active { 
-    background: var(--accent); border-color: var(--accent); color: #fff; 
-    box-shadow: 0 6px 16px var(--accent-glow); transform: translateY(-2px); 
-  }
-  .pt-req-pill.selected { 
-    background: var(--warning); border-color: var(--warning); color: #fff; 
-    box-shadow: 0 6px 16px var(--warning-glow); transform: translateY(-2px); 
-  }
+  .pt-work-pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .pt-req-pill.selected { background: var(--warning); border-color: var(--warning); color: #fff; }
 
   /* Main Action Buttons */
-  .pt-btn-container { display: flex; gap: 12px; margin-top: 28px; }
+  .pt-btn-container { display: flex; gap: 12px; margin-top: 24px; }
   .pt-btn-action {
-    flex: 1; padding: 14px; border: none; border-radius: var(--radius-sm); cursor: pointer; font-size: 14px;
-    font-weight: 800; font-family: inherit; transition: all 0.3s ease; display: flex;
+    flex: 1; padding: 14px; border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 15px;
+    font-weight: 600; font-family: inherit; transition: all 0.2s ease; display: flex;
     align-items: center; justify-content: center; gap: 8px; color: #fff;
   }
-  .pt-btn-subject { background: #3b82f6; box-shadow: 0 6px 16px rgba(59,130,246,0.3); width: 100%; margin-bottom: 24px; }
-  .pt-btn-subject:hover { background: #2563eb; transform: translateY(-2px); }
+  .pt-btn-action:hover { transform: scale(0.98); opacity: 0.9; }
   
-  .pt-btn-email { background: var(--accent); box-shadow: 0 6px 16px var(--accent-glow); }
-  .pt-btn-email:hover { background: #4f46e5; transform: translateY(-2px); }
-  
-  .pt-btn-doc { background: #0ea5e9; box-shadow: 0 6px 16px rgba(14,165,233,0.3); }
-  .pt-btn-doc:hover { background: #0284c7; transform: translateY(-2px); }
+  .pt-btn-subject { background: var(--accent); width: 100%; margin-bottom: 24px; }
+  .pt-btn-email { background: var(--accent); }
+  .pt-btn-doc { background: #5856D6; /* iOS Indigo */ }
 
   /* Review Button */
   .pt-review-btn {
-    width: 100%; margin-top: 8px; padding: 14px; background: rgba(255,255,255,0.2);
-    border: 2px dashed var(--glass-border); border-radius: var(--radius-sm); cursor: pointer; font-size: 14px;
-    font-weight: 700; color: var(--text-muted); font-family: inherit; display: flex;
-    align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease;
+    width: 100%; margin: 8px 0 0; padding: 14px; background: var(--btn-bg);
+    border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 15px;
+    font-weight: 600; color: var(--accent); font-family: inherit; display: flex;
+    align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;
   }
-  body.dark-mode .pt-review-btn { background: rgba(15, 23, 42, 0.4); }
-  .pt-review-btn:hover { background: rgba(255,255,255,0.5); border-color: var(--accent); color: var(--accent); }
-  body.dark-mode .pt-review-btn:hover { background: rgba(255,255,255,0.05); }
-  
-  .pt-review-btn.flash { background: rgba(16, 185, 129, 0.15); border: 2px solid var(--success); color: var(--success); }
+  .pt-review-btn.flash { background: var(--success); color: #fff; }
 
   /* Dividers & Notes */
-  .pt-divider { height: 1px; background: var(--glass-border); margin: 28px 0; border-radius: 2px; }
+  .pt-divider { height: 1px; background: var(--glass-border); margin: 24px 0; border-radius: 2px; }
   
   #pt-notes { 
-    width: 100%; min-height: 120px; padding: 16px; border: 1px solid var(--glass-border); border-radius: var(--radius-sm); 
-    font-size: 14px; font-weight: 500; font-family: inherit; color: var(--text-main); background: var(--input-bg); 
-    resize: vertical; outline: none; transition: all 0.3s ease; line-height: 1.6; 
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    width: 100%; min-height: 120px; padding: 14px; border: 1px solid var(--input-border); border-radius: var(--radius-md); 
+    font-size: 15px; font-weight: 400; font-family: inherit; color: var(--text-main); background: var(--input-bg); 
+    resize: vertical; outline: none; transition: all 0.3s ease; line-height: 1.5; 
   }
-  #pt-notes:focus { border-color: var(--accent); background: var(--glass-bg); box-shadow: 0 0 0 4px var(--accent-glow), inset 0 2px 4px rgba(0,0,0,0.01); }
-  body.dark-mode #pt-notes:focus { background: #1e293b; }
-  #pt-notes::placeholder { color: #94a3b8; font-weight: 500; }
+  #pt-notes::placeholder { color: var(--text-muted); font-weight: 400; }
 
-  .pt-footer { padding: 16px 28px 24px; text-align: center; font-size: 12px; color: var(--text-muted); font-weight: 700; border-top: 1px solid var(--glass-border); background: rgba(255,255,255,0.1); transition: all 0.3s;}
+  .pt-footer { padding: 16px 24px 24px; text-align: center; font-size: 13px; color: var(--text-muted); font-weight: 500; border-top: 1px solid var(--glass-border); background: rgba(0,0,0,0.02); transition: all 0.3s;}
 </style>
 </head>
 <body>
@@ -351,9 +317,9 @@
         <div class="pt-subtitle">Personal Tool</div>
       </div>
     </div>
-    <div style="display:flex;gap:10px;align-items:center;">
+    <div style="display:flex;gap:8px;align-items:center;">
       <button id="pt-newcode" class="pt-btn-newcode" onclick="ptToggleNewCode()">New Code</button>
-      <button class="pt-btn-clear" onclick="ptClear()">✕ Clear</button>
+      <button class="pt-btn-clear" onclick="ptClear()">Clear</button>
       <button class="pt-btn-theme" onclick="ptToggleTheme()" title="Switch to Dark Mode">🌙</button>
       <button class="pt-btn-help" onclick="ptOpenHelp()" title="Help">?</button>
     </div>
@@ -361,23 +327,26 @@
 
   <div class="pt-body">
     <div class="pt-section-label">Agent Info</div>
-    <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
-      <input class="pt-input" autocomplete="off" id="pt-name" placeholder="Name" style="flex:2;min-width:120px;">
-      <input class="pt-input" autocomplete="off" id="pt-soli" placeholder="Soli" style="flex:1;min-width:70px;">
-      <input class="pt-input" autocomplete="off" id="pt-wc" placeholder="WC" style="flex:1;min-width:70px;">
-      <input class="pt-input" autocomplete="off" id="pt-rc" placeholder="RC" style="flex:1;min-width:70px;">
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+      <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-name" placeholder="Name" style="flex:2;min-width:120px;">
+      <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-soli" placeholder="Soli" style="flex:1;min-width:70px;">
+      <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-wc" placeholder="WC" style="flex:1;min-width:70px;">
+      <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-rc" placeholder="RC" style="flex:1;min-width:70px;">
     </div>
     <button class="pt-btn-action pt-btn-subject" id="pt-subject-btn" onclick="ptCopySubject()">Copy Email Subject</button>
 
-    <div class="pt-row"><span class="pt-label">Contract level to:</span><input class="pt-input" autocomplete="off" id="pt-t1" placeholder="Enter value..."></div>
-    <div class="pt-row"><span class="pt-label">Comm schedule to:</span><input class="pt-input" autocomplete="off" id="pt-t2" placeholder="Enter value..."></div>
-    <div class="pt-row"><span class="pt-label">Direct upline to:</span><input class="pt-input" autocomplete="off" id="pt-t3" placeholder="Enter value..."></div>
+    <div class="pt-section-label">Request Details</div>
+    <div>
+      <div class="pt-row"><span class="pt-label">Contract level to</span><input class="pt-input" autocomplete="off" id="pt-t1" placeholder="Enter value"></div>
+      <div class="pt-row"><span class="pt-label">Comm schedule to</span><input class="pt-input" autocomplete="off" id="pt-t2" placeholder="Enter value"></div>
+      <div class="pt-row"><span class="pt-label">Direct upline to</span><input class="pt-input" autocomplete="off" id="pt-t3" placeholder="Enter value"></div>
+    </div>
 
     <div class="pt-date-row" id="pt-date-row">
       <span class="pt-date-label" onclick="ptToggleCal()" title="Open calendar">
-        <span class="cal-icon">📅</span> Effective Date
+        Effective Date
       </span>
-      <input class="pt-date-input" autocomplete="off" id="pt-date" placeholder="MM/DD/YYYY" oninput="ptFormatDate(this)" maxlength="10">
+      <input class="pt-date-input" autocomplete="off" id="pt-date" placeholder="MM/DD/YYYY" oninput="ptFormatDate(this)" maxlength="10" onclick="ptToggleCal()" readonly>
       <div class="pt-cal-popup" id="pt-cal-popup">
         <div class="pt-cal-nav">
           <button onclick="ptCalNav(-1)">&#8249;</button>
@@ -389,7 +358,7 @@
     </div>
 
     <button id="pt-confirm" class="active" onclick="this.classList.toggle('active')">
-      ⚠ Sent Confirmation Email (Burned as Source)
+      Sent Confirmation Email (Burned as Source)
     </button>
 
     <div class="pt-section-label">Work Objects</div>
@@ -401,9 +370,9 @@
       <button class="pt-work-pill" id="pt-w5" onclick="this.classList.toggle('active')">ASSGNMENT</button>
     </div>
     
-    <div style="display:flex; align-items:center; gap:12px; margin-bottom: 8px;">
-        <span class="pt-label" style="width: auto; font-size:13px; font-weight:800;">LCHTERM</span>
-        <input class="pt-input" autocomplete="off" id="pt-lch" placeholder="Enter details...">
+    <div class="pt-date-row" style="margin-bottom: 8px;">
+        <span class="pt-label" style="width: auto; font-size:15px;">LCHTERM</span>
+        <input class="pt-input" autocomplete="off" id="pt-lch" placeholder="Enter details" style="text-align: right; background: transparent; padding: 0;">
     </div>
 
     <div class="pt-btn-container">
@@ -423,7 +392,6 @@
         <button class="pt-req-pill" onclick="ptHandlePill('standing', this)">LCHTERM</button>
       </div>
       <button id="pt-review" class="pt-review-btn" onclick="ptReviewFlash()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7;"><path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>
         Please review
       </button>
     </div>
@@ -468,13 +436,15 @@
   document.getElementById('pt-soli').addEventListener('input', function() { if (this.value) document.getElementById('pt-wc').value = ''; });
   document.getElementById('pt-wc').addEventListener('input', function() { if (this.value) document.getElementById('pt-soli').value = ''; });
 
-  document.querySelectorAll('.pt-input').forEach(el => {
-    el.addEventListener('input', function() {
-      const pos = this.selectionStart;
-      this.value = this.value.toUpperCase();
-      this.setSelectionRange(pos, pos);
-    });
-    el.addEventListener('blur', function() { this.value = this.value.trim(); });
+  document.querySelectorAll('.pt-input, .pt-input-standalone').forEach(el => {
+    if(el.id !== 'pt-date'){
+        el.addEventListener('input', function() {
+        const pos = this.selectionStart;
+        this.value = this.value.toUpperCase();
+        this.setSelectionRange(pos, pos);
+        });
+        el.addEventListener('blur', function() { this.value = this.value.trim(); });
+    }
   });
 
   document.addEventListener('click', function(e) {
@@ -570,16 +540,16 @@
 
   function ptFlashBtn(id, orig) {
     const btn = document.getElementById(id);
-    btn.textContent = '✓ Copied!';
+    btn.textContent = 'Copied!';
+    const oldBg = btn.style.background;
     btn.style.background = 'var(--success)';
-    btn.style.boxShadow = '0 6px 16px var(--success-glow)';
-    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.boxShadow = ''; }, 1400);
+    setTimeout(() => { btn.textContent = orig; btn.style.background = oldBg; }, 1400);
   }
 
   window.ptToggleNewCode = function() { document.getElementById('pt-newcode').classList.toggle('active'); };
 
   window.ptClear = function() {
-    document.querySelectorAll('.pt-input, #pt-date').forEach(el => el.value = '');
+    document.querySelectorAll('.pt-input, .pt-input-standalone, #pt-date').forEach(el => el.value = '');
     document.querySelectorAll('.pt-req-pill').forEach(el => el.classList.remove('selected'));
     document.querySelectorAll('.pt-work-pill').forEach(el => el.classList.remove('active'));
     document.getElementById('pt-newcode').classList.remove('active');
@@ -598,12 +568,7 @@
     if (wc)  text += ' ' + wc;
     if (rc)  text += ' | ' + rc;
     ptCopy(text.trim());
-    const btn = document.getElementById('pt-subject-btn');
-    const orig = btn.innerHTML;
-    btn.textContent = '✓ Copied!';
-    btn.style.background = 'var(--success)';
-    btn.style.boxShadow = '0 6px 16px var(--success-glow)';
-    setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.boxShadow = ''; }, 1400);
+    ptFlashBtn('pt-subject-btn', 'Copy Email Subject');
   };
 
   function ptGetWorkObjects() {
@@ -680,10 +645,10 @@
     ptCopy('Please review');
     const btn = document.getElementById('pt-review');
     btn.classList.add('flash');
-    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
+    btn.innerHTML = 'Copied!';
     setTimeout(() => {
       btn.classList.remove('flash');
-      btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7;"><path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg> Please review';
+      btn.innerHTML = 'Please review';
     }, 1400);
   };
 
