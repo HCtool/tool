@@ -346,7 +346,9 @@
       <span class="pt-date-label" onclick="ptToggleCal()" title="Open calendar">
         Effective Date
       </span>
-      <input class="pt-date-input" autocomplete="off" id="pt-date" placeholder="MM/DD/YYYY" oninput="ptFormatDate(this)" maxlength="10" onclick="ptToggleCal()" readonly>
+      <!-- MODIFICATION: Removed the 'readonly' attribute here -->
+      <input class="pt-date-input" autocomplete="off" id="pt-date" placeholder="MM/DD/YYYY" oninput="ptFormatDate(this)" maxlength="10" onclick="ptToggleCal()">
+      
       <div class="pt-cal-popup" id="pt-cal-popup">
         <div class="pt-cal-nav">
           <button onclick="ptCalNav(-1)">&#8249;</button>
