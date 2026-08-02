@@ -3,36 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>H&C Personal Tool</title>
+<title>Tool</title>
 <style>
   :root {
-    /* iOS Light Mode Colors */
+    /* --- Base iOS Light Mode Variables --- */
     --text-main: #000000;
-    --text-muted: #3c3c4399; /* iOS Secondary Label */
+    --text-muted: #3c3c4399; 
     --glass-bg: rgba(250, 250, 250, 0.65);
     --glass-border: rgba(255, 255, 255, 0.6);
     --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     --input-bg: rgba(255, 255, 255, 0.6);
     --input-border: rgba(0, 0, 0, 0.04);
     --btn-bg: rgba(0, 0, 0, 0.05);
+    --header-bg: rgba(255, 255, 255, 0.1);
+    --hover-filter: brightness(0.9);
     
-    /* iOS System Colors */
-    --accent: #007AFF; /* iOS Blue */
+    --accent: #007AFF; 
     --accent-hover: #005fcc;
-    --danger: #FF3B30; /* iOS Red */
-    --warning: #FF9500; /* iOS Orange */
-    --success: #34C759; /* iOS Green */
+    --danger: #FF3B30; 
+    --warning: #FF9500; 
+    --success: #34C759; 
     
+    --bg-color: #f2f2f7;
+    --bg-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+
     --radius-sm: 10px;
     --radius-md: 14px;
     --radius-lg: 24px;
+    
+    --toast-bg: rgba(30, 30, 30, 0.85);
+    --toast-text: #ffffff;
   }
 
-  /* iOS Dark Mode Overrides */
-  body.dark-mode {
-    /* Deep abstract fluid background */
-    background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat fixed !important;
+  /* 1. iOS Light */
+  body[data-theme="ios-light"] {
+    --text-main: #000000;
+    --text-muted: #3c3c4399; 
+    --glass-bg: rgba(250, 250, 250, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.6);
+    --input-border: rgba(0, 0, 0, 0.04);
+    --btn-bg: rgba(0, 0, 0, 0.05);
+    --header-bg: rgba(255, 255, 255, 0.1);
+    --hover-filter: brightness(0.9);
     
+    --accent: #007AFF; 
+    --accent-hover: #005fcc;
+    --danger: #FF3B30; 
+    --warning: #FF9500; 
+    --success: #34C759; 
+    
+    --bg-color: #f2f2f7;
+    --bg-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+
+    --toast-bg: rgba(30, 30, 30, 0.85);
+    --toast-text: #ffffff;
+  }
+
+  /* 2. iOS Dark */
+  body[data-theme="ios-dark"] {
     --text-main: #FFFFFF;
     --text-muted: #ebebf599; 
     --glass-bg: rgba(28, 28, 30, 0.55);
@@ -41,29 +71,90 @@
     --input-bg: rgba(0, 0, 0, 0.25);
     --input-border: rgba(255, 255, 255, 0.1);
     --btn-bg: rgba(255, 255, 255, 0.1);
+    --header-bg: rgba(0, 0, 0, 0.1);
+    --hover-filter: brightness(1.2);
     
-    --accent: #0A84FF; /* iOS Dark Blue */
+    --accent: #0A84FF; 
     --accent-hover: #006ee6;
-    --danger: #FF453A; /* iOS Dark Red */
+    --danger: #FF453A; 
     --warning: #FF9F0A;
     --success: #30D158;
+    
+    --bg-color: #000000;
+    --bg-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+
+    --toast-bg: rgba(220, 220, 220, 0.9);
+    --toast-text: #000000;
+  }
+
+  /* 3. Catppuccin Latte */
+  body[data-theme="catppuccin-light"] {
+    --text-main: #4c4f69;
+    --text-muted: #8c8fa1;
+    --glass-bg: #ffffff;
+    --glass-border: #ccd0da;
+    --glass-shadow: 0 10px 40px rgba(76, 79, 105, 0.1);
+    --input-bg: #e6e9ef;
+    --input-border: #dce0e8;
+    --btn-bg: #e6e9ef;
+    --header-bg: rgba(255, 255, 255, 0.5);
+    --hover-filter: brightness(0.95);
+    
+    --accent: #1e66f5;
+    --accent-hover: #174fc2;
+    --danger: #d20f39;
+    --warning: #df8e1d;
+    --success: #40a02b;
+    
+    --bg-color: #eff1f5;
+    --bg-image: none;
+
+    --toast-bg: #4c4f69;
+    --toast-text: #eff1f5;
+  }
+
+  /* 4. Catppuccin Mocha */
+  body[data-theme="catppuccin-dark"] {
+    --text-main: #cdd6f4;
+    --text-muted: #a6adc8;
+    --glass-bg: #1e1e2e;
+    --glass-border: #313244;
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    --input-bg: #313244;
+    --input-border: #45475a;
+    --btn-bg: #313244;
+    --header-bg: rgba(0, 0, 0, 0.2);
+    --hover-filter: brightness(1.2);
+    
+    --accent: #89b4fa;
+    --accent-hover: #b4befe;
+    --danger: #f38ba8;
+    --warning: #f9e2af;
+    --success: #a6e3a1;
+    
+    --bg-color: #11111b;
+    --bg-image: none;
+
+    --toast-bg: #cdd6f4;
+    --toast-text: #11111b;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   body { 
-    /* Native Apple System Fonts */
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    
-    /* Vibrant abstract mesh background */
-    background: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat fixed;
+    background-color: var(--bg-color);
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--text-main);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     padding: 40px 20px; 
-    transition: background 0.5s ease;
+    transition: background-color 0.5s ease, background-image 0.5s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -75,70 +166,87 @@
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     width: 100%;
-    max-width: 640px;
+    max-width: 680px;
     box-shadow: var(--glass-shadow);
     position: relative;
     transition: all 0.3s ease;
   }
 
-  /* Header */
+  /* --- Header Layout --- */
   .pt-header {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--header-bg);
     border-bottom: 1px solid var(--glass-border);
-    padding: 20px 24px;
+    padding: 16px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     transition: all 0.3s ease;
   }
-  body.dark-mode .pt-header { background: rgba(0, 0, 0, 0.1); }
 
-  .pt-header-left { display: flex; align-items: center; gap: 14px; }
-  .pt-header-icon {
-    width: 46px; height: 46px;
-    background: var(--input-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    transition: all 0.3s ease;
+  /* Left Side */
+  .pt-header-left { 
+    display: flex; 
+    align-items: center; 
+    gap: 14px;
+    flex: 1;
   }
-  .pt-title { color: var(--text-main); font-size: 22px; font-weight: 700; letter-spacing: -0.4px; transition: color 0.3s; }
-  .pt-subtitle { color: var(--text-muted); font-size: 13px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; margin-top: 2px; transition: color 0.3s; }
 
-  /* Header Buttons */
-  .pt-btn-clear, .pt-btn-newcode, .pt-btn-help, .pt-btn-theme {
+  /* Right Side: Action Buttons */
+  .pt-header-right { 
+    display: flex; 
+    gap: 6px; 
+    align-items: center; 
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  .pt-btn-clear, .pt-btn-newcode, .pt-btn-help, .pt-btn-icon {
     background: var(--btn-bg); 
     border: none;
     color: var(--text-main); 
     border-radius: var(--radius-sm); 
-    padding: 8px 14px; 
-    font-size: 14px; 
+    padding: 8px 12px; 
+    font-size: 13px; 
     font-weight: 600;
     cursor: pointer; 
-    transition: all 0.2s ease; 
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); 
     font-family: inherit;
+    white-space: nowrap;
   }
   
-  .pt-btn-theme, .pt-btn-help {
+  /* Circular Icon Buttons (Theme & Tabs) */
+  .pt-btn-icon {
+    border-radius: 50%;
+    width: 36px; height: 36px; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  
+  /* Make Tab Cycler pop slightly more */
+  #tabCycler {
+    color: var(--accent);
+    background: var(--input-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    width: 40px; 
+    height: 40px; 
+  }
+  
+  .pt-btn-help {
     border-radius: 50%;
     width: 32px; height: 32px; padding: 0;
-    font-size: 15px; font-weight: 600;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
   }
 
-  .pt-btn-clear:hover, .pt-btn-newcode:hover, .pt-btn-theme:hover, .pt-btn-help:hover { 
-    filter: brightness(0.9); transform: scale(0.97); 
+  .pt-btn-clear:hover, .pt-btn-newcode:hover, .pt-btn-icon:hover, .pt-btn-help:hover { 
+    filter: var(--hover-filter); 
+    transform: scale(0.95); 
   }
-  body.dark-mode .pt-btn-clear:hover, body.dark-mode .pt-btn-newcode:hover, body.dark-mode .pt-btn-theme:hover, body.dark-mode .pt-btn-help:hover { 
-    filter: brightness(1.2); 
-  }
-
+  .pt-btn-icon:active { transform: scale(0.9) rotate(-15deg); }
   .pt-btn-clear { color: var(--danger); }
-  .pt-btn-newcode.active {
-    background: var(--warning); color: #fff;
-  }
+  .pt-btn-newcode.active { background: var(--warning); color: #fff; }
 
   /* Help Modal */
   .pt-help-overlay {
@@ -166,7 +274,7 @@
   .pt-help-close:hover { background: rgba(0,0,0,0.7); transform: scale(1.05); }
 
   /* Body & Layout */
-  .pt-body { padding: 28px 24px; }
+  .pt-body { padding: 24px 24px 28px; }
   .pt-section-label {
     font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
     color: var(--text-muted); margin: 24px 0 10px; padding-left: 4px; transition: color 0.3s;
@@ -256,7 +364,7 @@
     cursor: pointer; font-size: 15px; font-weight: 600; color: var(--danger); font-family: inherit; text-align: left;
     transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  #pt-confirm.active { background: var(--success); color: #fff; border-color: transparent; }
+  #pt-confirm.active { background: var(--success); color: #000; border-color: transparent; }
 
   /* Pills General */
   .pt-pills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
@@ -282,7 +390,8 @@
   
   .pt-btn-subject { background: var(--accent); width: 100%; margin-bottom: 24px; }
   .pt-btn-email { background: var(--accent); }
-  .pt-btn-doc { background: #5856D6; /* iOS Indigo */ }
+  .pt-btn-doc { background: #5856D6; /* Default secondary accent */ }
+  body[data-theme*="catppuccin"] .pt-btn-doc { background: var(--warning); color: #11111b; }
 
   /* Review Button */
   .pt-review-btn {
@@ -291,7 +400,7 @@
     font-weight: 600; color: var(--accent); font-family: inherit; display: flex;
     align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;
   }
-  .pt-review-btn.flash { background: var(--success); color: #fff; }
+  .pt-review-btn.flash { background: var(--success); color: #000; }
 
   /* Dividers & Notes */
   .pt-divider { height: 1px; background: var(--glass-border); margin: 24px 0; border-radius: 2px; }
@@ -303,103 +412,174 @@
   }
   #pt-notes::placeholder { color: var(--text-muted); font-weight: 400; }
 
+  /* Template Tab Specifics */
+  #tab3-view {
+    display: none;
+    flex-direction: column;
+    height: 60vh;
+    min-height: 350px;
+  }
+  
+  #pt-template-text {
+    width: 100%; flex: 1; padding: 14px; border: 1px solid var(--input-border);
+    border-radius: var(--radius-md); font-size: 15px; font-family: inherit;
+    color: var(--text-main); background: var(--input-bg); resize: none;
+    outline: none; transition: all 0.3s ease; line-height: 1.5;
+  }
+  #pt-template-text::placeholder { color: var(--text-muted); font-weight: 400; }
+
   .pt-footer { padding: 16px 24px 24px; text-align: center; font-size: 13px; color: var(--text-muted); font-weight: 500; border-top: 1px solid var(--glass-border); background: rgba(0,0,0,0.02); transition: all 0.3s;}
+
+  /* --- Notification Toast --- */
+  .pt-toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.9);
+    background: var(--toast-bg);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    color: var(--toast-text);
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 14px; 
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pt-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
 </style>
 </head>
 <body>
 
 <div class="pt-card">
   <div class="pt-header">
-    <div class="pt-header-left">
-      <div class="pt-header-icon">📋</div>
-      <div>
-        <div class="pt-title">H&C</div>
-        <div class="pt-subtitle">Personal Tool</div>
-      </div>
-    </div>
-    <div style="display:flex;gap:8px;align-items:center;">
-      <button id="pt-newcode" class="pt-btn-newcode" onclick="ptToggleNewCode()">New Code</button>
-      <button class="pt-btn-clear" onclick="ptClear()">Clear</button>
-      <button class="pt-btn-theme" onclick="ptToggleTheme()" title="Switch to Dark Mode">🌙</button>
-      <button class="pt-btn-help" onclick="ptOpenHelp()" title="Help">?</button>
-    </div>
-  </div>
-
-  <div class="pt-body">
-    <div class="pt-section-label">Agent Info</div>
-    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
-      <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-name" placeholder="Name" style="flex:2;min-width:120px;">
-      <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-soli" placeholder="Soli" style="flex:1;min-width:70px;">
-      <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-wc" placeholder="WC" style="flex:1;min-width:70px;">
-      <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-rc" placeholder="RC" style="flex:1;min-width:70px;">
-    </div>
-    <button class="pt-btn-action pt-btn-subject" id="pt-subject-btn" onclick="ptCopySubject()">Copy Email Subject</button>
-
-    <div class="pt-section-label">Request Details</div>
-    <div>
-      <div class="pt-row"><span class="pt-label">Contract level to</span><input class="pt-input" autocomplete="off" id="pt-t1" placeholder="Enter value"></div>
-      <div class="pt-row"><span class="pt-label">Comm schedule to</span><input class="pt-input" autocomplete="off" id="pt-t2" placeholder="Enter value"></div>
-      <div class="pt-row"><span class="pt-label">Direct upline to</span><input class="pt-input" autocomplete="off" id="pt-t3" placeholder="Enter value"></div>
-    </div>
-
-    <div class="pt-date-row" id="pt-date-row">
-      <span class="pt-date-label" onclick="ptToggleCal()" title="Open calendar">
-        Effective Date
-      </span>
-      <!-- MODIFICATION: Removed the 'readonly' attribute here -->
-      <input class="pt-date-input" autocomplete="off" id="pt-date" placeholder="MM/DD/YYYY" oninput="ptFormatDate(this)" maxlength="10" onclick="ptToggleCal()">
-      
-      <div class="pt-cal-popup" id="pt-cal-popup">
-        <div class="pt-cal-nav">
-          <button onclick="ptCalNav(-1)">&#8249;</button>
-          <span class="pt-cal-month" id="pt-cal-month"></span>
-          <button onclick="ptCalNav(1)">&#8250;</button>
-        </div>
-        <div class="pt-cal-grid" id="pt-cal-grid"></div>
-      </div>
-    </div>
-
-    <button id="pt-confirm" class="active" onclick="this.classList.toggle('active')">
-      Sent Confirmation Email (Burned as Source)
-    </button>
-
-    <div class="pt-section-label">Work Objects</div>
-    <div class="pt-pills-wrap">
-      <button class="pt-work-pill" id="pt-w1" onclick="this.classList.toggle('active')">ADDCHNGE</button>
-      <button class="pt-work-pill" id="pt-w4" onclick="this.classList.toggle('active')">ANNUALZ</button>
-      <button class="pt-work-pill" id="pt-w3" onclick="this.classList.toggle('active')">EFT</button>
-      <button class="pt-work-pill" id="pt-w2" onclick="this.classList.toggle('active')">SIMCHANGE</button>
-      <button class="pt-work-pill" id="pt-w5" onclick="this.classList.toggle('active')">ASSGNMENT</button>
-    </div>
     
-    <div class="pt-date-row" style="margin-bottom: 8px;">
-        <span class="pt-label" style="width: auto; font-size:15px;">LCHTERM</span>
-        <input class="pt-input" autocomplete="off" id="pt-lch" placeholder="Enter details" style="text-align: right; background: transparent; padding: 0;">
-    </div>
-
-    <div class="pt-btn-container">
-      <button class="pt-btn-action pt-btn-email" id="pt-email-btn" onclick="ptCopyEmail()">Copy Email Body</button>
-      <button class="pt-btn-action pt-btn-doc" id="pt-doc-btn" onclick="ptCopyDoc()">Copy Documentation</button>
-    </div>
-
-    <div class="pt-divider"></div>
-
-    <div>
-      <div class="pt-section-label">Outstanding Requirements</div>
-      <div class="pt-pills-wrap">
-        <button class="pt-req-pill" onclick="ptHandlePill('incorrect_signer', this)">Incorrect Signer</button>
-        <button class="pt-req-pill" onclick="ptHandlePill('unable_to_process', this)">Unable2Process</button>
-        <button class="pt-req-pill" onclick="ptHandlePill('submit_a_form', this)">Old Verified</button>
-        <button class="pt-req-pill" onclick="ptHandlePill('out', this)">New Verified</button>
-        <button class="pt-req-pill" onclick="ptHandlePill('standing', this)">LCHTERM</button>
-      </div>
-      <button id="pt-review" class="pt-review-btn" onclick="ptReviewFlash()">
-        Please review
+    <!-- LEFT SIDE: TAB SCROLLER (Cycle Button) -->
+    <div class="pt-header-left">
+      <button class="pt-btn-icon" id="tabCycler" onclick="ptCycleTab()" aria-label="Cycle Tabs" title="Switch Tab">
+        <svg id="tabIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
       </button>
     </div>
 
-    <div class="pt-section-label">Notes</div>
-    <textarea id="pt-notes" placeholder="Type additional notes here..."></textarea>
+    <!-- RIGHT SIDE: Actions & Theme -->
+    <div class="pt-header-right">
+      <button id="pt-newcode" class="pt-btn-newcode" onclick="ptToggleNewCode()">New Code</button>
+      <button class="pt-btn-clear" onclick="ptClear()">Clear</button>
+
+      <!-- THEME ROLLER BUTTON -->
+      <button class="pt-btn-icon" id="themeRoller" aria-label="Cycle Theme" title="Switch Theme">
+        <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </button>
+      
+      <button class="pt-btn-help" onclick="ptOpenHelp()" title="Help">?</button>
+    </div>
+    
+  </div>
+
+  <div class="pt-body">
+    <!-- TABS 1 & 2 SHARED FORM -->
+    <div id="tab12-view">
+      <div class="pt-section-label">Agent Info</div>
+      <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+        <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-name" placeholder="Name" style="flex:2;min-width:120px;">
+        <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-soli" placeholder="Soli" style="flex:1;min-width:70px;">
+        <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-wc" placeholder="WC" style="flex:1;min-width:70px;">
+        <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-rc" placeholder="RC" style="flex:1;min-width:70px;">
+      </div>
+      
+      <!-- Tab 1 Specific Subject Button -->
+      <button class="pt-btn-action pt-btn-subject" id="pt-subject-btn" onclick="ptCopySubject()">Copy Email Subject</button>
+
+      <div class="pt-section-label">Request Details</div>
+      <div>
+        <div class="pt-row"><span class="pt-label">Contract level to</span><input class="pt-input" autocomplete="off" id="pt-t1" placeholder="Enter value"></div>
+        <div class="pt-row"><span class="pt-label">Comm schedule to</span><input class="pt-input" autocomplete="off" id="pt-t2" placeholder="Enter value"></div>
+        <div class="pt-row"><span class="pt-label">Direct upline to</span><input class="pt-input" autocomplete="off" id="pt-t3" placeholder="Enter value"></div>
+      </div>
+
+      <div class="pt-date-row" id="pt-date-row">
+        <span class="pt-date-label" onclick="ptToggleCal()" title="Open calendar">
+          Effective Date
+        </span>
+        <input class="pt-date-input" autocomplete="off" id="pt-date" placeholder="MM/DD/YYYY" oninput="ptFormatDate(this)" maxlength="10" onclick="ptToggleCal()">
+        
+        <div class="pt-cal-popup" id="pt-cal-popup">
+          <div class="pt-cal-nav">
+            <button onclick="ptCalNav(-1)">&#8249;</button>
+            <span class="pt-cal-month" id="pt-cal-month"></span>
+            <button onclick="ptCalNav(1)">&#8250;</button>
+          </div>
+          <div class="pt-cal-grid" id="pt-cal-grid"></div>
+        </div>
+      </div>
+
+      <button id="pt-confirm" class="active" onclick="this.classList.toggle('active')">
+        Sent Confirmation Email (Burned as Source)
+      </button>
+
+      <div class="pt-section-label">Work Objects</div>
+      <div class="pt-pills-wrap">
+        <button class="pt-work-pill" id="pt-w1" onclick="this.classList.toggle('active')">ADDCHNGE</button>
+        <button class="pt-work-pill" id="pt-w4" onclick="this.classList.toggle('active')">ANNUALZ</button>
+        <button class="pt-work-pill" id="pt-w3" onclick="this.classList.toggle('active')">EFT</button>
+        <button class="pt-work-pill" id="pt-w2" onclick="this.classList.toggle('active')">SIMCHANGE</button>
+        <button class="pt-work-pill" id="pt-w5" onclick="this.classList.toggle('active')">ASSGNMENT</button>
+      </div>
+      
+      <div class="pt-date-row" style="margin-bottom: 8px;">
+          <span class="pt-label" style="width: auto; font-size:15px;">LCHTERM</span>
+          <input class="pt-input" autocomplete="off" id="pt-lch" placeholder="Enter details" style="text-align: right; background: transparent; padding: 0;">
+      </div>
+
+      <!-- Main Action Buttons (Switched based on Tabs) -->
+      
+      <!-- Tab 1 Actions -->
+      <div class="pt-btn-container" id="tab1-actions">
+        <button class="pt-btn-action pt-btn-email" id="pt-email-btn" onclick="ptCopyEmail()">Copy Email Body</button>
+        <button class="pt-btn-action pt-btn-doc" id="pt-doc-btn" onclick="ptCopyDoc('pt-doc-btn', 'Copy Documentation')">Copy Documentation</button>
+      </div>
+
+      <!-- Tab 2 Actions -->
+      <div class="pt-btn-container" id="tab2-actions" style="display:none;">
+        <button class="pt-btn-action pt-btn-email" id="pt-email-outlook-btn" onclick="ptEmailOutlook()">Email</button>
+        <button class="pt-btn-action pt-btn-doc" id="pt-doc-outlook-btn" onclick="ptCopyDoc('pt-doc-outlook-btn', 'Documentation')">Documentation</button>
+      </div>
+
+      <div class="pt-divider"></div>
+
+      <div>
+        <div class="pt-section-label">Outstanding Requirements</div>
+        <div class="pt-pills-wrap">
+          <button class="pt-req-pill" onclick="ptHandlePill('incorrect_signer', this)">Incorrect Signer</button>
+          <button class="pt-req-pill" onclick="ptHandlePill('unable_to_process', this)">Unable2Process</button>
+          <button class="pt-req-pill" onclick="ptHandlePill('submit_a_form', this)">Old Verified</button>
+          <button class="pt-req-pill" onclick="ptHandlePill('out', this)">New Verified</button>
+          <button class="pt-req-pill" onclick="ptHandlePill('standing', this)">LCHTERM</button>
+        </div>
+        <button id="pt-review" class="pt-review-btn" onclick="ptReviewFlash()">
+          Please review
+        </button>
+      </div>
+
+      <div class="pt-section-label">Notes</div>
+      <textarea id="pt-notes" placeholder="Type additional notes here..."></textarea>
+    </div>
+
+    <!-- TAB 3 VIEW: EMAIL TEMPLATE -->
+    <div id="tab3-view">
+      <textarea id="pt-template-text" placeholder="Type or paste your Outlook email template here..."></textarea>
+    </div>
+
   </div>
 
   <div class="pt-footer">Personal Tool</div>
@@ -412,6 +592,12 @@
   </div>
 </div>
 
+<!-- Notification Toast -->
+<div class="pt-toast" id="pt-toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  <span id="pt-toastMsg"></span>
+</div>
+
 <script>
 (function() {
   var calYear, calMonth;
@@ -419,22 +605,103 @@
   calYear = now.getFullYear();
   calMonth = now.getMonth();
 
-  // Dark Mode Toggle Logic
-  window.ptToggleTheme = function() {
-    const body = document.body;
-    const btn = document.querySelector('.pt-btn-theme');
-    
-    body.classList.toggle('dark-mode');
-    
-    if(body.classList.contains('dark-mode')) {
-      btn.textContent = '☀️';
-      btn.title = 'Switch to Light Mode';
-    } else {
-      btn.textContent = '🌙';
-      btn.title = 'Switch to Dark Mode';
-    }
+  // ---------- Toast Notification Logic ----------
+  let toastTimer;
+  const toastEl = document.getElementById('pt-toast');
+  const toastMsg = document.getElementById('pt-toastMsg');
+  
+  function showToast(msg) {
+    clearTimeout(toastTimer);
+    toastMsg.textContent = msg;
+    toastEl.classList.add('show');
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2000);
+  }
+
+  // ---------- Theme Roller Logic ----------
+  const themeRoller = document.getElementById('themeRoller');
+  const themeIcon = document.getElementById('themeIcon');
+  
+  const themes = [
+    { id: 'ios-light', name: 'Light mode', icon: '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>' },
+    { id: 'ios-dark', name: 'Dark mode', icon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>' },
+    { id: 'catppuccin-light', name: 'Simple Light mode', icon: '<path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line>' },
+    { id: 'catppuccin-dark', name: 'Simple Dark mode', icon: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>' }
+  ];
+
+  let currentThemeIndex = themes.findIndex(t => t.id === (localStorage.getItem('hcAppTheme') || 'ios-light'));
+  if (currentThemeIndex === -1) currentThemeIndex = 0;
+
+  function applyTheme(index, notify = false) {
+    const theme = themes[index];
+    document.body.setAttribute('data-theme', theme.id);
+    localStorage.setItem('hcAppTheme', theme.id);
+    themeIcon.innerHTML = theme.icon;
+    if (notify) { showToast(`${theme.name}`); }
+  }
+  applyTheme(currentThemeIndex);
+
+  themeRoller.addEventListener('click', () => {
+    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+    applyTheme(currentThemeIndex, true);
+  });
+
+  // ---------- Tab Cycle Scroller Logic ----------
+  const tabIcon = document.getElementById('tabIcon');
+  const notesArea = document.getElementById('pt-notes');
+  const tabData = [
+    { id: 1, name: 'Home', icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>' }, // Home/Main Icon
+    { id: 2, name: 'Outlook', icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>' }, // Mail Icon
+    { id: 3, name: 'Email Template', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>' } // Text File Icon
+  ];
+  let currentTabIdx = 0;
+
+  window.ptCycleTab = function() {
+    currentTabIdx = (currentTabIdx + 1) % tabData.length;
+    ptSwitchTab(currentTabIdx + 1, true);
   };
 
+  window.ptSwitchTab = function(tabIndex, notify = false) {
+    const tab = tabData[tabIndex - 1];
+    tabIcon.innerHTML = tab.icon;
+    if(notify) { showToast(tab.name); }
+
+    const view12 = document.getElementById('tab12-view');
+    const view3 = document.getElementById('tab3-view');
+    const subjectBtn = document.getElementById('pt-subject-btn');
+    const actions1 = document.getElementById('tab1-actions');
+    const actions2 = document.getElementById('tab2-actions');
+
+    if (tabIndex === 1) { // Main
+      view12.style.display = 'block';
+      view3.style.display = 'none';
+      subjectBtn.style.display = 'flex';
+      actions1.style.display = 'flex';
+      actions2.style.display = 'none';
+      notesArea.placeholder = "Type additional notes here...";
+    } else if (tabIndex === 2) { // Outlook App User
+      view12.style.display = 'block';
+      view3.style.display = 'none';
+      subjectBtn.style.display = 'none'; // No subject btn here
+      actions1.style.display = 'none';
+      actions2.style.display = 'flex';
+      notesArea.placeholder = "Type additional notes here...";
+    } else if (tabIndex === 3) { // Email Template
+      view12.style.display = 'none';
+      view3.style.display = 'flex';
+    }
+  };
+  
+  // Initialize the first tab on load
+  ptSwitchTab(1);
+
+  // ---------- Template Autosave Logic ----------
+  const templateEl = document.getElementById('pt-template-text');
+  templateEl.value = localStorage.getItem('hcEmailTemplate') || '';
+  templateEl.addEventListener('input', function() {
+    localStorage.setItem('hcEmailTemplate', this.value);
+  });
+
+  // ---------- Form Logic ----------
   document.getElementById('pt-soli').addEventListener('input', function() { if (this.value) document.getElementById('pt-wc').value = ''; });
   document.getElementById('pt-wc').addEventListener('input', function() { if (this.value) document.getElementById('pt-soli').value = ''; });
 
@@ -459,12 +726,8 @@
     if (e.key === 'Escape') ptCloseHelp();
   });
 
-  window.ptOpenHelp = function() {
-    document.getElementById('pt-help-overlay').classList.add('open');
-  };
-  window.ptCloseHelp = function() {
-    document.getElementById('pt-help-overlay').classList.remove('open');
-  };
+  window.ptOpenHelp = function() { document.getElementById('pt-help-overlay').classList.add('open'); };
+  window.ptCloseHelp = function() { document.getElementById('pt-help-overlay').classList.remove('open'); };
 
   function ptRenderCal() {
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -545,7 +808,8 @@
     btn.textContent = 'Copied!';
     const oldBg = btn.style.background;
     btn.style.background = 'var(--success)';
-    setTimeout(() => { btn.textContent = orig; btn.style.background = oldBg; }, 1400);
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = oldBg; btn.style.color = ''; }, 1400);
   }
 
   window.ptToggleNewCode = function() { document.getElementById('pt-newcode').classList.toggle('active'); };
@@ -557,19 +821,28 @@
     document.getElementById('pt-newcode').classList.remove('active');
     document.getElementById('pt-confirm').classList.add('active');
     document.getElementById('pt-notes').value = '';
+    showToast('Fields Cleared');
   };
 
-  window.ptCopySubject = function() {
+  // ----- Shared Text Generation -----
+
+  function ptGetSubjectText() {
     const name = document.getElementById('pt-name').value.trim();
     const sol  = document.getElementById('pt-soli').value.trim();
     const wc   = document.getElementById('pt-wc').value.trim();
     const rc   = document.getElementById('pt-rc').value.trim();
-    if (!name && !sol && !wc && !rc) return;
+    if (!name && !sol && !wc && !rc) return '';
     let text = 'Contract Change Request for ' + name;
     if (sol) text += ' ' + sol;
     if (wc)  text += ' ' + wc;
     if (rc)  text += ' | ' + rc;
-    ptCopy(text.trim());
+    return text.trim();
+  }
+
+  window.ptCopySubject = function() {
+    const text = ptGetSubjectText();
+    if (!text) return;
+    ptCopy(text);
     ptFlashBtn('pt-subject-btn', 'Copy Email Subject');
   };
 
@@ -593,6 +866,7 @@
     if (action === 'standing') {
       var lch = document.getElementById('pt-lch').value.trim();
       ptCopy('Please terminate agent code: ' + lch + '. Code no longer needed.');
+      showToast('Copied text!');
       return;
     }
 
@@ -632,6 +906,7 @@
       }
 
       ptCopy(lines.join('\n'));
+      showToast('Copied text!');
       return;
     }
 
@@ -640,7 +915,10 @@
       unable_to_process: "Unable to process\n\nPosted O/S in ELC UI\nFile sent to delay",
       submit_a_form: "Verified agent's set up already updated.\nFile closed"
     };
-    if (map[action]) ptCopy(map[action]);
+    if (map[action]) {
+      ptCopy(map[action]);
+      showToast('Copied text!');
+    }
   };
 
   window.ptReviewFlash = function() {
@@ -676,10 +954,11 @@
     return line;
   }
 
-  window.ptCopyEmail = function() {
+  function ptGetEmailBodyText() {
     const reqLines = ptGetRequestLines();
     const isNew = document.getElementById('pt-newcode').classList.contains('active');
-    if (!reqLines.length && !isNew) return;
+    if (!reqLines.length && !isNew) return null;
+    
     const sol = document.getElementById('pt-soli').value.trim();
     const wc  = document.getElementById('pt-wc').value.trim();
     const rc  = document.getElementById('pt-rc').value.trim();
@@ -697,15 +976,26 @@
     }
     out.push('', 'Effective date: ' + document.getElementById('pt-date').value.trim());
     const lch = ptGetLchLine(); if (lch) out.push('', lch);
-    ptCopy(out.join('\n'));
+    return out.join('\n');
+  }
+
+  // --- Main Tab Button Actions ---
+
+  window.ptCopyEmail = function() {
+    const text = ptGetEmailBodyText();
+    if (!text) { showToast('Nothing to copy!'); return; }
+    ptCopy(text);
     ptFlashBtn('pt-email-btn', 'Copy Email Body');
   };
 
-  window.ptCopyDoc = function() {
+  window.ptCopyDoc = function(btnId = 'pt-doc-btn', origText = 'Copy Documentation') {
     const reqLines = ptGetRequestLines();
     const objects  = ptGetWorkObjects();
     const isNew    = document.getElementById('pt-newcode').classList.contains('active');
-    if (!reqLines.length && !objects && !isNew) return;
+    if (!reqLines.length && !objects && !isNew) {
+      showToast('Nothing to copy!');
+      return;
+    }
     const sol = document.getElementById('pt-soli').value.trim();
     const wc  = document.getElementById('pt-wc').value.trim();
     const rc  = document.getElementById('pt-rc').value.trim();
@@ -724,7 +1014,58 @@
     if (document.getElementById('pt-confirm').classList.contains('active')) parts.push('Sent Confirmation Email (Burned as Source)');
     if (objects) parts.push(objects);
     ptCopy(parts.join('\n\n'));
-    ptFlashBtn('pt-doc-btn', 'Copy Documentation');
+    ptFlashBtn(btnId, origText);
+  };
+
+  // --- Outlook Tab Button Actions ---
+  
+  window.ptEmailOutlook = function() {
+    let generatedBody = ptGetEmailBodyText();
+    if (!generatedBody) { showToast('Nothing to send!'); return; }
+    
+    // Normalize generated body newlines for Outlook
+    generatedBody = generatedBody.replace(/\r?\n/g, '\r\n');
+
+    const template = localStorage.getItem('hcEmailTemplate') || '';
+    const lines = template.split(/\r?\n/);
+    
+    let before = lines.slice(0, 5);
+    let after = lines.slice(5);
+
+    // Remove empty trailing lines from the template's 'before' section so spacing doesn't stack
+    while (before.length > 0 && before[before.length - 1].trim() === '') {
+      before.pop();
+    }
+    // Remove empty leading lines from the 'after' section
+    while (after.length > 0 && after[0].trim() === '') {
+      after.shift();
+    }
+
+    let finalBody = before.join('\r\n');
+    
+    // Add exactly 1 blank line (2 line breaks) between template top and generated body
+    if (finalBody.length > 0) {
+      finalBody += '\r\n\r\n'; 
+    }
+    
+    finalBody += generatedBody;
+    
+    if (after.length > 0) {
+      finalBody += '\r\n\r\n' + after.join('\r\n');
+    }
+
+    const subject = ptGetSubjectText();
+    
+    // Grab notes field text, extract ONLY valid emails using regex for the "To" field
+    const notesRaw = document.getElementById('pt-notes').value.trim();
+    
+    // Regex matches anything that looks like an email address, ignoring brackets < >
+    const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
+    const emailMatches = notesRaw.match(emailRegex);
+    const toEmails = emailMatches ? emailMatches.join(';') : '';
+
+    const mailtoLink = 'mailto:' + encodeURIComponent(toEmails) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(finalBody);
+    window.location.href = mailtoLink;
   };
 
   window.ptFormatDate = function(el) {
