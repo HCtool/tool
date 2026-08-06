@@ -7,138 +7,93 @@
 <!-- Upgraded to xlsx-js-style to support automatic text wrapping and styling in Excel -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.min.js"></script>
 <style>
+  /* --- THEME VARIABLES --- */
   :root {
-    /* --- Base iOS Light Mode Variables --- */
-    --text-main: #000000;
-    --text-muted: #3c3c4399; 
-    --glass-bg: rgba(250, 250, 250, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.6);
-    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    --input-bg: rgba(255, 255, 255, 0.6);
-    --input-border: rgba(0, 0, 0, 0.04);
-    --btn-bg: rgba(0, 0, 0, 0.05);
-    --header-bg: rgba(255, 255, 255, 0.1);
-    --hover-filter: brightness(0.9);
-    
-    --accent: #007AFF; 
-    --accent-hover: #005fcc;
-    --danger: #FF3B30; 
-    --warning: #FF9500; 
-    --success: #34C759; 
-    
-    --bg-color: #f2f2f7;
-    --bg-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-
-    --radius-sm: 10px;
-    --radius-md: 14px;
-    --radius-lg: 24px;
-    
-    --toast-bg: rgba(30, 30, 30, 0.85);
-    --toast-text: #ffffff;
-  }
-
-  /* 1. iOS Light */
-  body[data-theme="ios-light"] {
-    --text-main: #000000;
-    --text-muted: #3c3c4399; 
-    --glass-bg: rgba(250, 250, 250, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.6);
-    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    --input-bg: rgba(255, 255, 255, 0.6);
-    --input-border: rgba(0, 0, 0, 0.04);
-    --btn-bg: rgba(0, 0, 0, 0.05);
-    --header-bg: rgba(255, 255, 255, 0.1);
-    --hover-filter: brightness(0.9);
-    
-    --accent: #007AFF; 
-    --accent-hover: #005fcc;
-    --danger: #FF3B30; 
-    --warning: #FF9500; 
-    --success: #34C759; 
-    
-    --bg-color: #f2f2f7;
-    --bg-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-
-    --toast-bg: rgba(30, 30, 30, 0.85);
-    --toast-text: #ffffff;
-  }
-
-  /* 2. iOS Dark */
-  body[data-theme="ios-dark"] {
-    --text-main: #FFFFFF;
-    --text-muted: #ebebf599; 
-    --glass-bg: rgba(28, 28, 30, 0.55);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    --input-bg: rgba(0, 0, 0, 0.25);
-    --input-border: rgba(255, 255, 255, 0.1);
-    --btn-bg: rgba(255, 255, 255, 0.1);
-    --header-bg: rgba(0, 0, 0, 0.1);
-    --hover-filter: brightness(1.2);
-    
-    --accent: #0A84FF; 
-    --accent-hover: #006ee6;
-    --danger: #FF453A; 
-    --warning: #FF9F0A;
-    --success: #30D158;
-    
-    --bg-color: #000000;
-    --bg-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-
-    --toast-bg: rgba(220, 220, 220, 0.9);
-    --toast-text: #000000;
-  }
-
-  /* 3. Catppuccin Latte */
-  body[data-theme="catppuccin-light"] {
+    /* Simple Light Mode (Default) */
     --text-main: #4c4f69;
     --text-muted: #8c8fa1;
-    --glass-bg: #ffffff;
-    --glass-border: #ccd0da;
-    --glass-shadow: 0 10px 40px rgba(76, 79, 105, 0.1);
-    --input-bg: #e6e9ef;
-    --input-border: #dce0e8;
-    --btn-bg: #e6e9ef;
-    --header-bg: rgba(255, 255, 255, 0.5);
-    --hover-filter: brightness(0.95);
     
     --accent: #1e66f5;
-    --accent-hover: #174fc2;
+    --accent-transparent: rgba(30, 102, 245, 0.1);
     --danger: #d20f39;
     --warning: #df8e1d;
-    --success: #40a02b;
+    --success: #16a34a; 
+    
+    --glass-bg: #ffffff;
+    --glass-border: #ccd0da;
+    --glass-shadow: 0 8px 24px rgba(76, 79, 105, 0.08);
+    
+    --fill-color: #e6e9ef;
+    --fill-color-hover: #dce0e8;
+    
+    --input-bg: var(--fill-color);
+    --input-border: var(--glass-border);
+    --btn-bg: var(--fill-color);
+    --header-bg: #ffffff;
+    --hover-filter: brightness(0.95);
     
     --bg-color: #eff1f5;
     --bg-image: none;
+
+    /* Primary Action Button Colors - Light */
+    --btn-email-bg: #0284c7; /* Sky Blue */
+    --btn-email-text: #ffffff;
+    --btn-doc-bg: #7c3aed;   /* Violet */
+    --btn-doc-text: #ffffff;
+    --btn-add-bg: #ea580c;   /* Orange */
+    --btn-add-text: #ffffff;
+    --btn-view-bg: #475569;  /* Slate Gray */
+    --btn-view-text: #ffffff;
+
+    /* Squarer modern look */
+    --radius-sm: 6px; 
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --border-width: 1px;
 
     --toast-bg: #4c4f69;
     --toast-text: #eff1f5;
   }
 
-  /* 4. Catppuccin Mocha */
-  body[data-theme="catppuccin-dark"] {
-    --text-main: #cdd6f4;
-    --text-muted: #a6adc8;
-    --glass-bg: #1e1e2e;
-    --glass-border: #313244;
-    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    --input-bg: #313244;
-    --input-border: #45475a;
-    --btn-bg: #313244;
-    --header-bg: rgba(0, 0, 0, 0.2);
-    --hover-filter: brightness(1.2);
+  /* Simple Dark Mode */
+  body[data-theme="simple-dark"] {
+    --text-main: #e4e4e7;
+    --text-muted: #a1a1aa;
     
-    --accent: #89b4fa;
-    --accent-hover: #b4befe;
-    --danger: #f38ba8;
-    --warning: #f9e2af;
-    --success: #a6e3a1;
+    --accent: #60a5fa;
+    --accent-transparent: rgba(96, 165, 250, 0.15);
+    --danger: #f87171;
+    --warning: #fb923c;
+    --success: #86efac;
     
-    --bg-color: #11111b;
+    --glass-bg: #27272a;
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    --fill-color: rgba(255, 255, 255, 0.05);
+    --fill-color-hover: rgba(255, 255, 255, 0.1);
+    
+    --input-bg: var(--fill-color);
+    --input-border: var(--glass-border);
+    --btn-bg: var(--fill-color);
+    --header-bg: #1f1f22;
+    --hover-filter: brightness(1.1);
+    
+    --bg-color: #18181b;
     --bg-image: none;
 
-    --toast-bg: #cdd6f4;
-    --toast-text: #11111b;
+    /* Primary Action Button Colors - Dark */
+    --btn-email-bg: #38bdf8; /* Light Sky Blue */
+    --btn-email-text: #000000;
+    --btn-doc-bg: #a78bfa;   /* Light Violet */
+    --btn-doc-text: #000000;
+    --btn-add-bg: #fb923c;   /* Light Orange */
+    --btn-add-text: #000000;
+    --btn-view-bg: #94a3b8;  /* Light Slate */
+    --btn-view-text: #000000;
+
+    --toast-bg: #e4e4e7;
+    --toast-text: #18181b;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -160,12 +115,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Core iOS Glass Panel */
+  /* Core Glass Panel */
   .pt-card {
     background: var(--glass-bg);
     backdrop-filter: blur(25px) saturate(200%);
     -webkit-backdrop-filter: blur(25px) saturate(200%);
-    border: 1px solid var(--glass-border);
+    border: var(--border-width) solid var(--glass-border);
     border-radius: var(--radius-lg);
     width: 100%;
     max-width: 680px;
@@ -177,7 +132,7 @@
   /* --- Header Layout --- */
   .pt-header {
     background: var(--header-bg);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: var(--border-width) solid var(--glass-border);
     padding: 16px 20px;
     display: flex;
     justify-content: space-between;
@@ -187,7 +142,6 @@
     transition: all 0.3s ease;
   }
 
-  /* Left Side */
   .pt-header-left { 
     display: flex; 
     align-items: center; 
@@ -195,7 +149,6 @@
     flex: 1;
   }
 
-  /* Right Side: Action Buttons */
   .pt-header-right { 
     display: flex; 
     gap: 6px; 
@@ -204,7 +157,7 @@
     flex: 1;
   }
 
-  .pt-btn-tracker, .pt-btn-newcode, .pt-btn-help, .pt-btn-icon {
+  .pt-btn-newcode, .pt-btn-help, .pt-btn-icon, .pt-btn-clear {
     background: var(--btn-bg); 
     border: none;
     color: var(--text-main); 
@@ -216,39 +169,50 @@
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); 
     font-family: inherit;
     white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
   }
   
-  /* Circular Icon Buttons (Theme & Tabs) */
+  /* Clear Button Override */
+  .pt-btn-clear {
+    color: var(--danger);
+  }
+  
+  /* Modern Squarer Icon Buttons */
   .pt-btn-icon {
-    border-radius: 50%;
     width: 36px; height: 36px; padding: 0;
     display: flex; align-items: center; justify-content: center;
   }
   
-  /* Make Tab Cycler pop slightly more */
   #tabCycler {
     color: var(--accent);
     background: var(--input-bg);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: var(--border-width) solid var(--glass-border);
     width: 40px; 
     height: 40px; 
   }
   
   .pt-btn-help {
-    border-radius: 50%;
     width: 32px; height: 32px; padding: 0;
     font-size: 14px; font-weight: 600;
     display: flex; align-items: center; justify-content: center;
   }
 
-  .pt-btn-tracker:hover, .pt-btn-newcode:hover, .pt-btn-icon:hover, .pt-btn-help:hover { 
-    filter: var(--hover-filter); 
-    transform: scale(0.95); 
+  .pt-btn-newcode:hover, .pt-btn-icon:hover, .pt-btn-help:hover { 
+    background: var(--fill-color-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   }
-  .pt-btn-icon:active { transform: scale(0.9) rotate(-15deg); }
-  .pt-btn-tracker { color: var(--accent); }
-  .pt-btn-newcode.active { background: var(--warning); color: #fff; }
+  
+  .pt-btn-clear:hover {
+    background: var(--danger);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  
+  .pt-btn-icon:active, .pt-btn-clear:active { transform: translateY(0); }
+  .pt-btn-newcode.active { background: var(--warning); color: #fff; box-shadow: none; }
+  body[data-theme="simple-dark"] .pt-btn-newcode.active { color: #000; }
 
   /* Modals Overlay */
   .pt-modal-overlay {
@@ -261,15 +225,15 @@
   
   .pt-help-modal {
     background: var(--glass-bg); backdrop-filter: blur(30px) saturate(200%); -webkit-backdrop-filter: blur(30px) saturate(200%); 
-    border: 1px solid var(--glass-border);
+    border: var(--border-width) solid var(--glass-border);
     border-radius: var(--radius-lg); max-width: 420px; width: 100%;
-    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden; box-shadow: var(--glass-shadow);
     position: relative;
   }
   .pt-help-modal img { width: 100%; display: block; }
   .pt-help-close {
     position: absolute; top: 12px; right: 12px; width: 32px; height: 32px;
-    border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: #fff;
+    border-radius: var(--radius-sm); border: none; background: rgba(0,0,0,0.5); color: #fff;
     font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center;
     transition: all 0.2s ease; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
@@ -278,13 +242,13 @@
   /* Tracker Modal Specifics */
   .pt-tracker-modal {
     background: var(--glass-bg); backdrop-filter: blur(30px) saturate(200%); -webkit-backdrop-filter: blur(30px) saturate(200%);
-    border: 1px solid var(--glass-border);
+    border: var(--border-width) solid var(--glass-border);
     border-radius: var(--radius-lg); max-width: 700px; width: 100%; max-height: 85vh;
     display: flex; flex-direction: column;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden;
+    box-shadow: var(--glass-shadow); overflow: hidden;
   }
   .pt-tracker-header {
-    padding: 16px 20px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; background: var(--header-bg); border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 16px 20px; border-bottom: var(--border-width) solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; background: var(--header-bg); border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
   .pt-tracker-header h3 { font-size: 16px; margin: 0; color: var(--text-main); }
   .pt-tracker-header div { display: flex; gap: 8px; }
@@ -294,31 +258,30 @@
   .pt-tracker-header button.pt-btn-excel { background: var(--success); color: #fff; }
   .pt-tracker-header button.pt-btn-delall { background: var(--danger); color: #fff; }
   
-  body[data-theme*="catppuccin"] .pt-tracker-header button.pt-btn-excel { color: #11111b; }
-  body[data-theme*="catppuccin"] .pt-tracker-header button.pt-btn-delall { color: #11111b; }
+  body[data-theme="simple-dark"] .pt-tracker-header button.pt-btn-excel { color: #000; }
   
-  .pt-tracker-header button:hover { filter: var(--hover-filter); }
+  .pt-tracker-header button:hover { transform: translateY(-1px); filter: brightness(1.1); }
   .pt-tracker-body {
     padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px;
   }
   .pt-tracker-item {
-    background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-md); padding: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    background: var(--input-bg); border: var(--border-width) solid var(--input-border); border-radius: var(--radius-md); padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
   }
   .pt-ti-header { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
   .pt-ti-date, .pt-ti-codes {
-    background: transparent; border: 1px solid var(--glass-border); border-radius: 4px; padding: 6px; color: var(--text-main); font-size: 13px; font-family: inherit; transition: all 0.2s;
+    background: transparent; border: var(--border-width) solid var(--glass-border); border-radius: var(--radius-sm); padding: 6px; color: var(--text-main); font-size: 13px; font-family: inherit; transition: all 0.2s;
   }
   .pt-ti-date:focus, .pt-ti-codes:focus, .pt-ti-doc:focus { outline: 1px solid var(--accent); background: var(--input-bg); }
   .pt-ti-date { width: 60px; text-align: center; }
   .pt-ti-codes { flex: 1; min-width: 120px; }
   .pt-ti-doc {
-    width: 100%; min-height: 80px; padding: 8px; border: 1px solid var(--glass-border); border-radius: 4px; background: transparent; color: var(--text-main); font-size: 13px; font-family: inherit; resize: vertical; line-height: 1.4; transition: all 0.2s;
+    width: 100%; min-height: 80px; padding: 8px; border: var(--border-width) solid var(--glass-border); border-radius: var(--radius-sm); background: transparent; color: var(--text-main); font-size: 13px; font-family: inherit; resize: vertical; line-height: 1.4; transition: all 0.2s;
   }
   .pt-ti-actions { display: flex; gap: 8px; margin-left: auto; }
   .pt-ti-actions button {
-    background: var(--btn-bg); border: none; padding: 6px 10px; border-radius: 4px; color: var(--text-main); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    background: var(--btn-bg); border: none; padding: 6px 10px; border-radius: var(--radius-sm); color: var(--text-main); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
   }
-  .pt-ti-actions button:hover { filter: brightness(0.9); transform: scale(0.98); }
+  .pt-ti-actions button:hover { background: var(--fill-color-hover); transform: translateY(-1px); }
   .pt-ti-actions button.del-btn { color: var(--danger); }
   .pt-ti-actions button.save-btn { color: var(--accent); }
 
@@ -333,20 +296,19 @@
   /* Inputs & Rows */
   .pt-row {
     margin-bottom: 1px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
-    background: var(--input-bg); padding: 8px 16px; border: 1px solid var(--input-border); 
+    background: var(--input-bg); padding: 8px 16px; border: var(--border-width) solid var(--input-border); 
     transition: all 0.3s;
   }
   
-  /* iOS Grouped List Style */
-  .pt-row:first-of-type { border-radius: var(--radius-md) var(--radius-md) 0 0; border-bottom: none; }
+  .pt-row:first-of-type { border-radius: var(--radius-sm) var(--radius-sm) 0 0; border-bottom: none; }
   .pt-row:nth-of-type(2) { border-radius: 0; border-bottom: none; }
-  .pt-row:nth-of-type(3) { border-radius: 0 0 var(--radius-md) var(--radius-md); margin-bottom: 16px; }
+  .pt-row:nth-of-type(3) { border-radius: 0 0 var(--radius-sm) var(--radius-sm); margin-bottom: 16px; }
   
   .pt-label { font-size: 15px; font-weight: 500; color: var(--text-main); white-space: nowrap; width: 160px; transition: color 0.3s; }
   
   .pt-input {
-    padding: 8px 12px; border: none; border-radius: 6px; flex: 1; min-width: 80px;
-    outline: none; font-size: 15px; font-weight: 400; font-family: inherit; 
+    padding: 8px 12px; border: none; border-radius: var(--radius-sm); flex: 1; min-width: 80px;
+    outline: none; font-size: 14px; font-weight: 500; font-family: inherit; 
     background: transparent; color: var(--text-main);
     text-transform: uppercase; transition: all 0.3s ease; text-align: right;
   }
@@ -354,14 +316,14 @@
   
   /* Standalone Inputs */
   .pt-input-standalone {
-    background: var(--input-bg); border: 1px solid var(--input-border); 
+    background: var(--input-bg); border: var(--border-width) solid var(--input-border); 
     border-radius: var(--radius-sm); padding: 12px 14px; text-align: left;
   }
 
   /* Date Picker */
   .pt-date-row {
     display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 12px 16px;
-    background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-md);
+    background: var(--input-bg); border: var(--border-width) solid var(--input-border); border-radius: var(--radius-sm);
     position: relative; transition: all 0.3s; justify-content: space-between;
   }
 
@@ -371,7 +333,7 @@
     display: flex; align-items: center; gap: 8px;
   }
   .pt-date-input {
-    width: 120px; padding: 8px 12px; border: none; border-radius: 8px;
+    width: 120px; padding: 8px 12px; border: none; border-radius: var(--radius-sm);
     outline: none; font-size: 15px; font-weight: 500; font-family: inherit; 
     background: var(--btn-bg); color: var(--accent); text-align: center;
     transition: all 0.3s ease; cursor: pointer;
@@ -381,7 +343,7 @@
   .pt-cal-popup {
     display: none; position: absolute; top: calc(100% + 8px); right: 0; z-index: 999;
     background: var(--glass-bg); backdrop-filter: blur(30px) saturate(200%); -webkit-backdrop-filter: blur(30px) saturate(200%);
-    border: 1px solid var(--glass-border); border-radius: var(--radius-md);
+    border: var(--border-width) solid var(--glass-border); border-radius: var(--radius-md);
     box-shadow: var(--glass-shadow); padding: 16px; min-width: 280px; transition: all 0.3s;
   }
   .pt-cal-popup.open { display: block; animation: pt-scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1); transform-origin: top right; }
@@ -389,87 +351,94 @@
   
   .pt-cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .pt-cal-nav button {
-    background: var(--btn-bg); border: none; border-radius: 50%; cursor: pointer;
+    background: var(--btn-bg); border: none; border-radius: var(--radius-sm); cursor: pointer;
     font-size: 16px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
     color: var(--accent); transition: all 0.2s ease; font-weight: bold;
   }
+  .pt-cal-nav button:hover { background: var(--fill-color-hover); }
   .pt-cal-month { font-size: 15px; font-weight: 600; color: var(--text-main); transition: color 0.3s; }
   .pt-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
   .pt-cal-dow { text-align: center; font-size: 12px; font-weight: 600; color: var(--text-muted); padding: 4px 0; transition: color 0.3s; }
   
   .pt-cal-day {
-    text-align: center; font-size: 15px; font-weight: 400; padding: 8px 2px; border-radius: 50%;
+    text-align: center; font-size: 15px; font-weight: 500; padding: 8px 2px; border-radius: var(--radius-sm);
     cursor: pointer; color: var(--text-main); transition: all 0.2s ease;
   }
   .pt-cal-day:hover { background: var(--btn-bg); color: var(--accent); }
-  .pt-cal-day.today { font-weight: 600; color: var(--accent); background: rgba(0, 122, 255, 0.1); }
+  .pt-cal-day.today { font-weight: 600; color: var(--accent); background: var(--accent-transparent); }
   .pt-cal-day.selected { background: var(--accent); color: #fff; font-weight: 600; }
   .pt-cal-day.empty { cursor: default; background: none; }
 
   /* Confirmation Alert Button */
   #pt-confirm {
-    width: 100%; margin: 16px 0; padding: 14px 16px; 
-    background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-sm); 
-    cursor: pointer; font-size: 15px; font-weight: 600; color: var(--danger); font-family: inherit; text-align: left;
+    width: 100%; margin: 16px 0; padding: 10px 14px; 
+    background: var(--input-bg); border: var(--border-width) solid var(--input-border); border-radius: var(--radius-sm); 
+    cursor: pointer; font-size: 13px; font-weight: 600; color: var(--danger); font-family: inherit; text-align: left;
     transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  #pt-confirm.active { background: var(--success); color: #000; border-color: transparent; }
+  #pt-confirm.active { background: var(--success); color: #fff; border-color: transparent; }
+  body[data-theme="simple-dark"] #pt-confirm.active { color: #000; }
 
   /* Pills General */
   .pt-pills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 
-  /* Work Objects Pills & Req Pills */
+  /* Modern Square Pills */
   .pt-work-pill, .pt-req-pill {
-    padding: 8px 16px; border-radius: 20px; border: 1px solid var(--glass-border); 
-    background: var(--input-bg); color: var(--text-main); font-size: 13px; font-weight: 500; 
+    padding: 8px 14px; border-radius: var(--radius-sm); border: none; 
+    background: var(--btn-bg); color: var(--text-main); font-size: 13px; font-weight: 600; 
     cursor: pointer; transition: all 0.2s ease; font-family: inherit;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
   
-  .pt-work-pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .pt-req-pill.selected { background: var(--warning); border-color: var(--warning); color: #fff; }
+  .pt-work-pill:hover, .pt-req-pill:hover {
+    background: var(--fill-color-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  
+  .pt-work-pill.active { background: var(--accent); color: #fff; box-shadow: none; }
+  .pt-req-pill.selected { background: var(--warning); color: #fff; box-shadow: none; }
+  body[data-theme="simple-dark"] .pt-req-pill.selected { color: #000; }
 
-  /* Main Action Buttons */
+  /* Main Action Buttons (Unified Alignment & Behavior) */
   .pt-btn-container { display: flex; gap: 12px; margin-top: 24px; }
   .pt-btn-action {
-    flex: 1; padding: 14px; border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 15px;
+    flex: 1; padding: 10px 12px; border: none; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;
     font-weight: 600; font-family: inherit; transition: all 0.2s ease; display: flex;
-    align-items: center; justify-content: center; gap: 8px; color: #fff;
+    align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
-  .pt-btn-action:hover { transform: scale(0.98); opacity: 0.9; }
+  .pt-btn-action:hover { transform: translateY(-1px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); filter: brightness(1.05); }
+  .pt-btn-action:active { transform: translateY(0); }
   
-  .pt-btn-subject { background: var(--accent); width: 100%; margin-bottom: 24px; }
-  .pt-btn-email { background: var(--accent); }
-  .pt-btn-doc { background: #5856D6; /* Default secondary accent */ }
+  .pt-btn-subject { background: var(--accent); color: #fff; width: 100%; margin-bottom: 24px; }
+  body[data-theme="simple-dark"] .pt-btn-subject { color: #000; }
   
-  /* Upgraded Add to Tracker Buttons with Gradient */
-  .pt-btn-add { 
-    background: linear-gradient(135deg, var(--success), var(--danger)); 
-    color: #fff; 
-    width: 100%; 
-    margin-top: 12px; 
-  }
-  body[data-theme*="catppuccin"] .pt-btn-add { 
-    background: linear-gradient(135deg, var(--success), var(--danger)); 
-    color: #fff; 
-  }
+  .pt-btn-email { background: var(--btn-email-bg); color: var(--btn-email-text); }
+  .pt-btn-doc { background: var(--btn-doc-bg); color: var(--btn-doc-text); }
+  .pt-btn-add { background: var(--btn-add-bg); color: var(--btn-add-text); }
+  .pt-btn-view { background: var(--btn-view-bg); color: var(--btn-view-text); }
 
   /* Review Button */
   .pt-review-btn {
-    width: 100%; margin: 8px 0 0; padding: 14px; background: var(--btn-bg);
-    border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 15px;
+    width: 100%; margin: 8px 0 0; padding: 10px 12px; background: var(--btn-bg);
+    border: none; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;
     font-weight: 600; color: var(--accent); font-family: inherit; display: flex;
     align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;
   }
-  .pt-review-btn.flash { background: var(--success); color: #000; }
+  .pt-review-btn:hover { background: var(--fill-color-hover); transform: translateY(-1px); }
+  .pt-review-btn.flash { background: var(--success); color: #fff; }
+  body[data-theme="simple-dark"] .pt-review-btn.flash { color: #000; }
 
   /* Dividers & Notes */
   .pt-divider { height: 1px; background: var(--glass-border); margin: 24px 0; border-radius: 2px; }
   
   #pt-notes { 
-    width: 100%; min-height: 120px; padding: 14px; border: 1px solid var(--input-border); border-radius: var(--radius-md); 
-    font-size: 15px; font-weight: 400; font-family: inherit; color: var(--text-main); background: var(--input-bg); 
+    width: 100%; min-height: 120px; padding: 14px; border: var(--border-width) solid var(--input-border); border-radius: var(--radius-sm); 
+    font-size: 14px; font-weight: 400; font-family: inherit; color: var(--text-main); background: var(--input-bg); 
     resize: vertical; outline: none; transition: all 0.3s ease; line-height: 1.5; 
   }
+  #pt-notes:focus { background: var(--fill-color-hover); box-shadow: 0 0 0 2px var(--accent); }
   #pt-notes::placeholder { color: var(--text-muted); font-weight: 400; }
 
   /* Template Tab Specifics */
@@ -481,14 +450,15 @@
   }
   
   #pt-template-text {
-    width: 100%; flex: 1; padding: 14px; border: 1px solid var(--input-border);
-    border-radius: var(--radius-md); font-size: 15px; font-family: inherit;
+    width: 100%; flex: 1; padding: 14px; border: var(--border-width) solid var(--input-border);
+    border-radius: var(--radius-sm); font-size: 14px; font-family: inherit;
     color: var(--text-main); background: var(--input-bg); resize: none;
     outline: none; transition: all 0.3s ease; line-height: 1.5;
   }
+  #pt-template-text:focus { background: var(--fill-color-hover); box-shadow: 0 0 0 2px var(--accent); }
   #pt-template-text::placeholder { color: var(--text-muted); font-weight: 400; }
 
-  .pt-footer { padding: 16px 24px 24px; text-align: center; font-size: 13px; color: var(--text-muted); font-weight: 500; border-top: 1px solid var(--glass-border); background: rgba(0,0,0,0.02); transition: all 0.3s;}
+  .pt-footer { padding: 16px 24px 24px; text-align: center; font-size: 13px; color: var(--text-muted); font-weight: 600; border-top: var(--border-width) solid var(--glass-border); background: transparent; transition: all 0.3s;}
 
   /* --- Notification Toast --- */
   .pt-toast {
@@ -519,7 +489,7 @@
   }
 </style>
 </head>
-<body>
+<body data-theme="simple-light">
 
 <div class="pt-card">
   <div class="pt-header">
@@ -534,7 +504,9 @@
     <!-- RIGHT SIDE: Actions & Theme -->
     <div class="pt-header-right">
       <button id="pt-newcode" class="pt-btn-newcode" onclick="ptToggleNewCode()">New Code</button>
-      <button class="pt-btn-tracker" onclick="ptOpenTracker()">View Saved</button>
+      
+      <!-- NEW CLEAR BUTTON -->
+      <button class="pt-btn-clear" onclick="ptClear(false)">Clear</button>
 
       <!-- THEME ROLLER BUTTON -->
       <button class="pt-btn-icon" id="themeRoller" aria-label="Cycle Theme" title="Switch Theme">
@@ -597,7 +569,7 @@
       </div>
       
       <div class="pt-date-row" style="margin-bottom: 8px;">
-          <span class="pt-label" style="width: auto; font-size:15px;">LCHTERM</span>
+          <span class="pt-label" style="width: auto; font-size:14px;">LCHTERM</span>
           <input class="pt-input" autocomplete="off" id="pt-lch" placeholder="Enter details" style="text-align: right; background: transparent; padding: 0;">
       </div>
 
@@ -608,14 +580,18 @@
         <button class="pt-btn-action pt-btn-email" id="pt-email-btn" onclick="ptCopyEmail()">Copy Email Body</button>
         <button class="pt-btn-action pt-btn-doc" id="pt-doc-btn" onclick="ptCopyDoc('pt-doc-btn', 'Copy Documentation')">Copy Documentation</button>
       </div>
-      <button class="pt-btn-action pt-btn-add" id="tab1-add" onclick="ptAddToTracker()">Add to Tracker / Clear</button>
 
       <!-- Tab 2 Actions -->
       <div class="pt-btn-container" id="tab2-actions" style="display:none;">
         <button class="pt-btn-action pt-btn-email" id="pt-email-outlook-btn" onclick="ptEmailOutlook()">Email</button>
         <button class="pt-btn-action pt-btn-doc" id="pt-doc-outlook-btn" onclick="ptCopyDoc('pt-doc-outlook-btn', 'Documentation')">Documentation</button>
       </div>
-      <button class="pt-btn-action pt-btn-add" id="tab2-add" style="display:none;" onclick="ptAddToTracker()">Add to Tracker / Clear</button>
+
+      <!-- SHARED TRACKER ROW: Unified for both Tab 1 and Tab 2 -->
+      <div class="pt-btn-container" id="shared-tracker-actions" style="margin-top: 12px;">
+        <button class="pt-btn-action pt-btn-add" onclick="ptAddToTracker()">Add to Tracker</button>
+        <button class="pt-btn-action pt-btn-view" onclick="ptOpenTracker()">Tracker</button>
+      </div>
 
       <div class="pt-divider"></div>
 
@@ -702,13 +678,11 @@
   const themeIcon = document.getElementById('themeIcon');
   
   const themes = [
-    { id: 'ios-light', name: 'Light mode', icon: '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>' },
-    { id: 'ios-dark', name: 'Dark mode', icon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>' },
-    { id: 'catppuccin-light', name: 'Simple Light mode', icon: '<path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line>' },
-    { id: 'catppuccin-dark', name: 'Simple Dark mode', icon: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>' }
+    { id: 'simple-light', name: 'Light mode', icon: '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>' },
+    { id: 'simple-dark', name: 'Dark mode', icon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>' }
   ];
 
-  let currentThemeIndex = themes.findIndex(t => t.id === (localStorage.getItem('hcAppTheme') || 'ios-light'));
+  let currentThemeIndex = themes.findIndex(t => t.id === (localStorage.getItem('hcAppTheme') || 'simple-light'));
   if (currentThemeIndex === -1) currentThemeIndex = 0;
 
   function applyTheme(index, notify = false) {
@@ -750,8 +724,6 @@
     const subjectBtn = document.getElementById('pt-subject-btn');
     const actions1 = document.getElementById('tab1-actions');
     const actions2 = document.getElementById('tab2-actions');
-    const add1 = document.getElementById('tab1-add');
-    const add2 = document.getElementById('tab2-add');
 
     if (tabIndex === 1) { // Main
       view12.style.display = 'block';
@@ -759,8 +731,6 @@
       subjectBtn.style.display = 'flex';
       actions1.style.display = 'flex';
       actions2.style.display = 'none';
-      add1.style.display = 'block';
-      add2.style.display = 'none';
       notesArea.placeholder = "Type additional notes here...";
     } else if (tabIndex === 2) { // Outlook App User
       view12.style.display = 'block';
@@ -768,8 +738,6 @@
       subjectBtn.style.display = 'none'; // No subject btn here
       actions1.style.display = 'none';
       actions2.style.display = 'flex';
-      add1.style.display = 'none';
-      add2.style.display = 'block';
       notesArea.placeholder = "Type additional notes here...";
     } else if (tabIndex === 3) { // Email Template
       view12.style.display = 'none';
@@ -1026,9 +994,9 @@
     const wc  = document.getElementById('pt-wc').value.trim();
     const rc  = document.getElementById('pt-rc').value.trim();
     const ncLines = [];
-    if (rc) ncLines.push('           Recruiting: ' + rc);
-    if (wc) ncLines.push('           Writing: ' + wc);
-    if (sol) ncLines.push('           Solicitor: ' + sol);
+    if (rc) ncLines.push('             Recruiting: ' + rc);
+    if (wc) ncLines.push('             Writing: ' + wc);
+    if (sol) ncLines.push('             Solicitor: ' + sol);
     
     let reqBlock = 'Processed the following requests:\n';
     if (reqLines.length > 0) {
