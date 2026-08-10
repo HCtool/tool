@@ -36,14 +36,22 @@
     --bg-image: none;
 
     /* Primary Action Button Colors - Light */
-    --btn-email-bg: #0284c7; /* Sky Blue */
+    --btn-email-bg: #ea580c; 
     --btn-email-text: #ffffff;
-    --btn-doc-bg: #7c3aed;   /* Violet */
+    --btn-doc-bg: #7c3aed;   
     --btn-doc-text: #ffffff;
-    --btn-add-bg: #ea580c;   /* Orange */
+    --btn-add-bg: #ea580c;   
     --btn-add-text: #ffffff;
-    --btn-view-bg: #475569;  /* Slate Gray */
+    --btn-view-bg: #475569;  
     --btn-view-text: #ffffff;
+
+    /* Dynamic Button Theme Colors (Light) */
+    --dyn-1-bg: #e0e7ff; --dyn-1-txt: #3730a3; /* Indigo */
+    --dyn-2-bg: #dcfce7; --dyn-2-txt: #166534; /* Green */
+    --dyn-3-bg: #fef9c3; --dyn-3-txt: #854d0e; /* Yellow */
+    --dyn-4-bg: #ffedd5; --dyn-4-txt: #9a3412; /* Orange */
+    --dyn-5-bg: #f3e8ff; --dyn-5-txt: #6b21a8; /* Purple */
+    --dyn-6-bg: #ffe4e6; --dyn-6-txt: #9f1239; /* Rose */
 
     /* Squarer modern look */
     --radius-sm: 6px; 
@@ -77,20 +85,28 @@
     --input-border: var(--glass-border);
     --btn-bg: var(--fill-color);
     --header-bg: #1f1f22;
-    --hover-filter: brightness(1.1);
+    --hover-filter: brightness(1.15);
     
     --bg-color: #18181b;
     --bg-image: none;
 
     /* Primary Action Button Colors - Dark */
-    --btn-email-bg: #38bdf8; /* Light Sky Blue */
+    --btn-email-bg: #fb923c; 
     --btn-email-text: #000000;
-    --btn-doc-bg: #a78bfa;   /* Light Violet */
+    --btn-doc-bg: #a78bfa;   
     --btn-doc-text: #000000;
-    --btn-add-bg: #fb923c;   /* Light Orange */
+    --btn-add-bg: #fb923c;   
     --btn-add-text: #000000;
-    --btn-view-bg: #94a3b8;  /* Light Slate */
+    --btn-view-bg: #94a3b8;  
     --btn-view-text: #000000;
+
+    /* Dynamic Button Theme Colors (Dark) */
+    --dyn-1-bg: rgba(79, 70, 229, 0.2); --dyn-1-txt: #a5b4fc;
+    --dyn-2-bg: rgba(22, 163, 74, 0.2); --dyn-2-txt: #86efac;
+    --dyn-3-bg: rgba(202, 138, 4, 0.2); --dyn-3-txt: #fde047;
+    --dyn-4-bg: rgba(234, 88, 12, 0.2); --dyn-4-txt: #fdba74;
+    --dyn-5-bg: rgba(147, 51, 234, 0.2); --dyn-5-txt: #d8b4fe;
+    --dyn-6-bg: rgba(225, 29, 72, 0.2); --dyn-6-txt: #fda4af;
 
     --toast-bg: #e4e4e7;
     --toast-text: #18181b;
@@ -98,20 +114,20 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
+  html, body { 
+    height: 100vh;
+    overflow: hidden; 
+  }
+
   body { 
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
-    background-image: var(--bg-image);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     color: var(--text-main);
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: 100vh;
-    padding: 40px 20px; 
-    transition: background-color 0.5s ease, background-image 0.5s ease, color 0.3s ease;
+    padding: 20px; 
+    transition: background-color 0.5s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -124,9 +140,12 @@
     border-radius: var(--radius-lg);
     width: 100%;
     max-width: 680px;
+    height: 100%; 
     box-shadow: var(--glass-shadow);
     position: relative;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
   }
 
   /* --- Header Layout --- */
@@ -140,6 +159,7 @@
     gap: 12px;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     transition: all 0.3s ease;
+    flex-shrink: 0;
   }
 
   .pt-header-left { 
@@ -154,33 +174,20 @@
     gap: 6px; 
     align-items: center; 
     justify-content: flex-end;
-    flex: 1;
+    flex: 2;
   }
 
-  .pt-btn-newcode, .pt-btn-help, .pt-btn-icon, .pt-btn-clear {
+  .pt-btn-icon {
     background: var(--btn-bg); 
     border: none;
     color: var(--text-main); 
     border-radius: var(--radius-sm); 
-    padding: 8px 12px; 
-    font-size: 13px; 
-    font-weight: 600;
+    padding: 0; 
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
     cursor: pointer; 
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); 
-    font-family: inherit;
-    white-space: nowrap;
     box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-  }
-  
-  /* Clear Button Override */
-  .pt-btn-clear {
-    color: var(--danger);
-  }
-  
-  /* Modern Squarer Icon Buttons */
-  .pt-btn-icon {
-    width: 36px; height: 36px; padding: 0;
-    display: flex; align-items: center; justify-content: center;
   }
   
   #tabCycler {
@@ -190,29 +197,20 @@
     width: 40px; 
     height: 40px; 
   }
-  
-  .pt-btn-help {
-    width: 32px; height: 32px; padding: 0;
-    font-size: 14px; font-weight: 600;
-    display: flex; align-items: center; justify-content: center;
-  }
 
-  .pt-btn-newcode:hover, .pt-btn-icon:hover, .pt-btn-help:hover { 
+  .pt-btn-icon:hover { 
     background: var(--fill-color-hover);
     transform: translateY(-1px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   }
+
+  .pt-btn-icon:active { transform: translateY(0); }
   
-  .pt-btn-clear:hover {
-    background: var(--danger);
-    color: #fff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  }
-  
-  .pt-btn-icon:active, .pt-btn-clear:active { transform: translateY(0); }
-  .pt-btn-newcode.active { background: var(--warning); color: #fff; box-shadow: none; }
-  body[data-theme="simple-dark"] .pt-btn-newcode.active { color: #000; }
+  #pt-newcode.active { background: var(--warning); color: #fff; box-shadow: none; }
+  body[data-theme="simple-dark"] #pt-newcode.active { color: #000; }
+
+  #pt-btn-clear-icon { color: #ef4444; }
+  body[data-theme="simple-dark"] #pt-btn-clear-icon { color: #f87171; }
 
   /* Modals Overlay */
   .pt-modal-overlay {
@@ -222,22 +220,6 @@
   }
   .pt-modal-overlay.open { display: flex; animation: pt-fade 0.2s ease; }
   @keyframes pt-fade { from { opacity: 0; } to { opacity: 1; } }
-  
-  .pt-help-modal {
-    background: var(--glass-bg); backdrop-filter: blur(30px) saturate(200%); -webkit-backdrop-filter: blur(30px) saturate(200%); 
-    border: var(--border-width) solid var(--glass-border);
-    border-radius: var(--radius-lg); max-width: 420px; width: 100%;
-    overflow: hidden; box-shadow: var(--glass-shadow);
-    position: relative;
-  }
-  .pt-help-modal img { width: 100%; display: block; }
-  .pt-help-close {
-    position: absolute; top: 12px; right: 12px; width: 32px; height: 32px;
-    border-radius: var(--radius-sm); border: none; background: rgba(0,0,0,0.5); color: #fff;
-    font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s ease; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  }
-  .pt-help-close:hover { background: rgba(0,0,0,0.7); transform: scale(1.05); }
 
   /* Tracker Modal Specifics */
   .pt-tracker-modal {
@@ -257,84 +239,86 @@
   }
   .pt-tracker-header button.pt-btn-excel { background: var(--success); color: #fff; }
   .pt-tracker-header button.pt-btn-delall { background: var(--danger); color: #fff; }
-  
   body[data-theme="simple-dark"] .pt-tracker-header button.pt-btn-excel { color: #000; }
-  
   .pt-tracker-header button:hover { transform: translateY(-1px); filter: brightness(1.1); }
-  .pt-tracker-body {
-    padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px;
-  }
-  .pt-tracker-item {
-    background: var(--input-bg); border: var(--border-width) solid var(--input-border); border-radius: var(--radius-md); padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-  }
+  
+  .pt-tracker-body { padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+  .pt-tracker-item { background: var(--input-bg); border: var(--border-width) solid var(--input-border); border-radius: var(--radius-md); padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
   .pt-ti-header { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-  .pt-ti-date, .pt-ti-codes {
-    background: transparent; border: var(--border-width) solid var(--glass-border); border-radius: var(--radius-sm); padding: 6px; color: var(--text-main); font-size: 13px; font-family: inherit; transition: all 0.2s;
-  }
+  .pt-ti-date, .pt-ti-codes { background: transparent; border: var(--border-width) solid var(--glass-border); border-radius: var(--radius-sm); padding: 6px; color: var(--text-main); font-size: 13px; font-family: inherit; transition: all 0.2s; }
   .pt-ti-date:focus, .pt-ti-codes:focus, .pt-ti-doc:focus { outline: 1px solid var(--accent); background: var(--input-bg); }
   .pt-ti-date { width: 60px; text-align: center; }
   .pt-ti-codes { flex: 1; min-width: 120px; }
-  .pt-ti-doc {
-    width: 100%; min-height: 80px; padding: 8px; border: var(--border-width) solid var(--glass-border); border-radius: var(--radius-sm); background: transparent; color: var(--text-main); font-size: 13px; font-family: inherit; resize: vertical; line-height: 1.4; transition: all 0.2s;
-  }
+  .pt-ti-doc { width: 100%; min-height: 80px; padding: 8px; border: var(--border-width) solid var(--glass-border); border-radius: var(--radius-sm); background: transparent; color: var(--text-main); font-size: 13px; font-family: inherit; resize: vertical; line-height: 1.4; transition: all 0.2s; }
   .pt-ti-actions { display: flex; gap: 8px; margin-left: auto; }
-  .pt-ti-actions button {
-    background: var(--btn-bg); border: none; padding: 6px 10px; border-radius: var(--radius-sm); color: var(--text-main); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-  }
+  .pt-ti-actions button { background: var(--btn-bg); border: none; padding: 6px 10px; border-radius: var(--radius-sm); color: var(--text-main); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
   .pt-ti-actions button:hover { background: var(--fill-color-hover); transform: translateY(-1px); }
   .pt-ti-actions button.del-btn { color: var(--danger); }
   .pt-ti-actions button.save-btn { color: var(--accent); }
 
   /* Body & Layout */
-  .pt-body { padding: 24px 24px 28px; }
+  .pt-body { padding: 20px 24px 24px; display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+  
+  /* Flex views for auto sizing */
+  #tab12-view, #tab3-notes-view, #tab4-template-view {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto; 
+    padding-right: 4px; 
+  }
+
+  #tab12-view > * { flex-shrink: 0; }
+  #tab3-notes-view > * { flex-shrink: 0; }
+  #tab4-template-view > * { flex-shrink: 0; }
+
   .pt-section-label {
     font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--text-muted); margin: 24px 0 10px; padding-left: 4px; transition: color 0.3s;
+    color: var(--text-muted); margin: 16px 0 8px; padding-left: 4px; transition: color 0.3s;
   }
   .pt-section-label:first-child { margin-top: 0; }
 
   /* Inputs & Rows */
   .pt-row {
     margin-bottom: 1px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
-    background: var(--input-bg); padding: 8px 16px; border: var(--border-width) solid var(--input-border); 
+    background: var(--input-bg); padding: 6px 16px; border: var(--border-width) solid var(--input-border); 
     transition: all 0.3s;
   }
+  .pt-row.group-start { border-radius: var(--radius-sm) var(--radius-sm) 0 0; border-bottom: none; }
+  .pt-row.group-mid { border-radius: 0; border-bottom: none; }
+  .pt-row.group-end { border-radius: 0 0 var(--radius-sm) var(--radius-sm); margin-bottom: 16px; }
   
-  .pt-row:first-of-type { border-radius: var(--radius-sm) var(--radius-sm) 0 0; border-bottom: none; }
-  .pt-row:nth-of-type(2) { border-radius: 0; border-bottom: none; }
-  .pt-row:nth-of-type(3) { border-radius: 0 0 var(--radius-sm) var(--radius-sm); margin-bottom: 16px; }
-  
-  .pt-label { font-size: 15px; font-weight: 500; color: var(--text-main); white-space: nowrap; width: 160px; transition: color 0.3s; }
+  .pt-label { font-size: 14px; font-weight: 500; color: var(--text-main); white-space: nowrap; width: 160px; transition: color 0.3s; }
   
   .pt-input {
-    padding: 8px 12px; border: none; border-radius: var(--radius-sm); flex: 1; min-width: 80px;
-    outline: none; font-size: 14px; font-weight: 500; font-family: inherit; 
+    padding: 6px 10px; border: none; border-radius: var(--radius-sm); flex: 1; min-width: 80px;
+    outline: none; font-size: 13px; font-weight: 500; font-family: inherit; 
     background: transparent; color: var(--text-main);
     text-transform: uppercase; transition: all 0.3s ease; text-align: right;
   }
+  .pt-input.no-upper { text-transform: none; }
   .pt-input::placeholder { text-transform: none; color: var(--text-muted); font-weight: 400; }
   
-  /* Standalone Inputs */
   .pt-input-standalone {
     background: var(--input-bg); border: var(--border-width) solid var(--input-border); 
-    border-radius: var(--radius-sm); padding: 12px 14px; text-align: left;
+    border-radius: var(--radius-sm); padding: 8px 12px; text-align: left; font-size: 13px;
   }
 
   /* Date Picker */
   .pt-date-row {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 12px 16px;
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 8px 16px;
     background: var(--input-bg); border: var(--border-width) solid var(--input-border); border-radius: var(--radius-sm);
     position: relative; transition: all 0.3s; justify-content: space-between;
   }
 
   .pt-date-label {
-    font-size: 15px; font-weight: 500; color: var(--text-main); white-space: nowrap;
+    font-size: 14px; font-weight: 500; color: var(--text-main); white-space: nowrap;
     cursor: pointer; user-select: none; transition: color 0.2s;
     display: flex; align-items: center; gap: 8px;
   }
   .pt-date-input {
-    width: 120px; padding: 8px 12px; border: none; border-radius: var(--radius-sm);
-    outline: none; font-size: 15px; font-weight: 500; font-family: inherit; 
+    width: 120px; padding: 6px 10px; border: none; border-radius: var(--radius-sm);
+    outline: none; font-size: 13px; font-weight: 500; font-family: inherit; 
     background: var(--btn-bg); color: var(--accent); text-align: center;
     transition: all 0.3s ease; cursor: pointer;
   }
@@ -350,32 +334,36 @@
   @keyframes pt-scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   
   .pt-cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .pt-cal-nav button {
-    background: var(--btn-bg); border: none; border-radius: var(--radius-sm); cursor: pointer;
-    font-size: 16px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-    color: var(--accent); transition: all 0.2s ease; font-weight: bold;
-  }
+  .pt-cal-nav button { background: var(--btn-bg); border: none; border-radius: var(--radius-sm); cursor: pointer; font-size: 16px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: var(--accent); transition: all 0.2s ease; font-weight: bold; }
   .pt-cal-nav button:hover { background: var(--fill-color-hover); }
   .pt-cal-month { font-size: 15px; font-weight: 600; color: var(--text-main); transition: color 0.3s; }
   .pt-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
   .pt-cal-dow { text-align: center; font-size: 12px; font-weight: 600; color: var(--text-muted); padding: 4px 0; transition: color 0.3s; }
   
-  .pt-cal-day {
-    text-align: center; font-size: 15px; font-weight: 500; padding: 8px 2px; border-radius: var(--radius-sm);
-    cursor: pointer; color: var(--text-main); transition: all 0.2s ease;
-  }
+  .pt-cal-day { text-align: center; font-size: 15px; font-weight: 500; padding: 8px 2px; border-radius: var(--radius-sm); cursor: pointer; color: var(--text-main); transition: all 0.2s ease; }
   .pt-cal-day:hover { background: var(--btn-bg); color: var(--accent); }
   .pt-cal-day.today { font-weight: 600; color: var(--accent); background: var(--accent-transparent); }
   .pt-cal-day.selected { background: var(--accent); color: #fff; font-weight: 600; }
   .pt-cal-day.empty { cursor: default; background: none; }
 
-  /* Confirmation Alert Button */
-  #pt-confirm {
-    width: 100%; margin: 16px 0; padding: 10px 14px; 
-    background: var(--input-bg); border: var(--border-width) solid var(--input-border); border-radius: var(--radius-sm); 
-    cursor: pointer; font-size: 13px; font-weight: 600; color: var(--danger); font-family: inherit; text-align: left;
-    transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
+  /* Confirmation & Review Buttons Container */
+  .pt-action-row { display: flex; gap: 12px; margin-top: 8px; width: 100%; align-items: center; }
+
+  /* Review Button & Confirmation Button fixed sizing */
+  .pt-review-btn, #pt-confirm {
+    flex: 1; margin: 0; padding: 0 12px; background: var(--btn-bg);
+    border: var(--border-width) solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;
+    font-weight: 600; font-family: inherit; display: flex;
+    align-items: center; justify-content: center; text-align: center; gap: 8px; transition: all 0.2s ease;
+    box-sizing: border-box; height: 38px; min-height: 38px; max-height: 38px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
+  
+  .pt-review-btn { color: var(--accent); }
+  .pt-review-btn:hover { background: var(--fill-color-hover); transform: translateY(-1px); }
+  .pt-review-btn.flash { background: var(--success); color: #fff; }
+  body[data-theme="simple-dark"] .pt-review-btn.flash { color: #000; }
+
+  #pt-confirm { background: var(--input-bg); border-color: var(--input-border); color: var(--text-main); }
   #pt-confirm.active { background: var(--success); color: #fff; border-color: transparent; }
   body[data-theme="simple-dark"] #pt-confirm.active { color: #000; }
 
@@ -390,103 +378,194 @@
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
   
-  .pt-work-pill:hover, .pt-req-pill:hover {
-    background: var(--fill-color-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  }
+  .pt-work-pill:hover, .pt-req-pill:hover { background: var(--fill-color-hover); transform: translateY(-1px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
   
   .pt-work-pill.active { background: var(--accent); color: #fff; box-shadow: none; }
   .pt-req-pill.selected { background: var(--warning); color: #fff; box-shadow: none; }
   body[data-theme="simple-dark"] .pt-req-pill.selected { color: #000; }
 
-  /* Main Action Buttons (Unified Alignment & Behavior) */
-  .pt-btn-container { display: flex; gap: 12px; margin-top: 24px; }
+  /* --- DYNAMIC BUTTON CLASSES (Theme-Aware) --- */
+  .pt-req-pill.btn-dyn-1 { background: var(--dyn-1-bg); color: var(--dyn-1-txt); }
+  .pt-req-pill.btn-dyn-2 { background: var(--dyn-2-bg); color: var(--dyn-2-txt); }
+  .pt-req-pill.btn-dyn-3 { background: var(--dyn-3-bg); color: var(--dyn-3-txt); }
+  .pt-req-pill.btn-dyn-4 { background: var(--dyn-4-bg); color: var(--dyn-4-txt); }
+  .pt-req-pill.btn-dyn-5 { background: var(--dyn-5-bg); color: var(--dyn-5-txt); }
+  .pt-req-pill.btn-dyn-6 { background: var(--dyn-6-bg); color: var(--dyn-6-txt); }
+
+  .pt-req-pill.btn-dyn-1:hover { background: var(--dyn-1-bg); filter: var(--hover-filter); }
+  .pt-req-pill.btn-dyn-2:hover { background: var(--dyn-2-bg); filter: var(--hover-filter); }
+  .pt-req-pill.btn-dyn-3:hover { background: var(--dyn-3-bg); filter: var(--hover-filter); }
+  .pt-req-pill.btn-dyn-4:hover { background: var(--dyn-4-bg); filter: var(--hover-filter); }
+  .pt-req-pill.btn-dyn-5:hover { background: var(--dyn-5-bg); filter: var(--hover-filter); }
+  .pt-req-pill.btn-dyn-6:hover { background: var(--dyn-6-bg); filter: var(--hover-filter); }
+
+  /* Main Action Buttons */
+  .pt-btn-container { display: flex; gap: 12px; margin-top: 16px; }
   .pt-btn-action {
-    flex: 1; padding: 10px 12px; border: none; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;
+    flex: 1; padding: 0 12px; border: none; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;
     font-weight: 600; font-family: inherit; transition: all 0.2s ease; display: flex;
     align-items: center; justify-content: center; gap: 8px;
+    height: 38px; min-height: 38px; max-height: 38px; 
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
   .pt-btn-action:hover { transform: translateY(-1px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); filter: brightness(1.05); }
   .pt-btn-action:active { transform: translateY(0); }
   
-  .pt-btn-subject { background: var(--accent); color: #fff; width: 100%; margin-bottom: 24px; }
+  .pt-btn-subject { background: var(--accent); color: #fff; width: 100%; margin-bottom: 4px; margin-top: 4px; }
   body[data-theme="simple-dark"] .pt-btn-subject { color: #000; }
   
   .pt-btn-email { background: var(--btn-email-bg); color: var(--btn-email-text); }
   .pt-btn-doc { background: var(--btn-doc-bg); color: var(--btn-doc-text); }
-  .pt-btn-add { background: var(--btn-add-bg); color: var(--btn-add-text); }
-  .pt-btn-view { background: var(--btn-view-bg); color: var(--btn-view-text); }
 
-  /* Review Button */
-  .pt-review-btn {
-    width: 100%; margin: 8px 0 0; padding: 10px 12px; background: var(--btn-bg);
-    border: none; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;
-    font-weight: 600; color: var(--accent); font-family: inherit; display: flex;
-    align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;
+  .pt-divider { height: 1px; background: var(--glass-border); margin: 20px 0; border-radius: 2px; }
+
+  /* Custom Select Styling */
+  #pt-template-select {
+    height: 35px;
+    margin-bottom: 0;
+    flex: 1;
+    min-width: 100px;
+    padding: 0 32px 0 12px;
+    border-radius: var(--radius-sm);
+    border: var(--border-width) solid var(--input-border);
+    background-color: var(--input-bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
-  .pt-review-btn:hover { background: var(--fill-color-hover); transform: translateY(-1px); }
-  .pt-review-btn.flash { background: var(--success); color: #fff; }
-  body[data-theme="simple-dark"] .pt-review-btn.flash { color: #000; }
-
-  /* Dividers & Notes */
-  .pt-divider { height: 1px; background: var(--glass-border); margin: 24px 0; border-radius: 2px; }
-  
-  #pt-notes { 
-    width: 100%; min-height: 120px; padding: 14px; border: var(--border-width) solid var(--input-border); border-radius: var(--radius-sm); 
-    font-size: 14px; font-weight: 400; font-family: inherit; color: var(--text-main); background: var(--input-bg); 
-    resize: vertical; outline: none; transition: all 0.3s ease; line-height: 1.5; 
+  #pt-template-select:hover {
+    background-color: var(--fill-color-hover);
   }
-  #pt-notes:focus { background: var(--fill-color-hover); box-shadow: 0 0 0 2px var(--accent); }
-  #pt-notes::placeholder { color: var(--text-muted); font-weight: 400; }
+  #pt-template-select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  #pt-template-select option {
+    background-color: var(--glass-bg);
+    color: var(--text-main);
+    font-weight: 500;
+  }
 
-  /* Template Tab Specifics */
-  #tab3-view {
-    display: none;
+  /* Textareas that autoadjust */
+  #pt-notes, #pt-note-main, .pt-template-area { 
+    width: 100%; 
+    padding: 12px 14px; border: var(--border-width) solid var(--input-border); border-radius: var(--radius-sm); 
+    font-size: 13px; font-weight: 400; font-family: inherit; color: var(--text-main); background: var(--input-bg); 
+    resize: none; 
+    outline: none; transition: all 0.3s ease; line-height: 1.5; 
+    flex-grow: 1; flex-shrink: 1; 
+    min-height: 80px; 
+  }
+  #pt-notes:focus, #pt-note-main:focus, .pt-template-area:focus { background: var(--fill-color-hover); box-shadow: 0 0 0 2px var(--accent); }
+  #pt-notes::placeholder, #pt-note-main::placeholder, .pt-template-area::placeholder { color: var(--text-muted); font-weight: 400; }
+
+  /* Template hints styling */
+  .pt-template-hint {
+    font-size: 12.5px;
+    color: var(--text-main);
+    background: var(--input-bg);
+    border: var(--border-width) solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .pt-template-hint code {
+    background: var(--btn-bg);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* --- Grid Variable Textboxes in Notes Tab --- */
+  .pt-vars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .pt-var-block {
+    display: flex;
     flex-direction: column;
-    height: 60vh;
-    min-height: 350px;
+    gap: 2px;
   }
-  
-  #pt-template-text {
-    width: 100%; flex: 1; padding: 14px; border: var(--border-width) solid var(--input-border);
-    border-radius: var(--radius-sm); font-size: 14px; font-family: inherit;
-    color: var(--text-main); background: var(--input-bg); resize: none;
-    outline: none; transition: all 0.3s ease; line-height: 1.5;
-  }
-  #pt-template-text:focus { background: var(--fill-color-hover); box-shadow: 0 0 0 2px var(--accent); }
-  #pt-template-text::placeholder { color: var(--text-muted); font-weight: 400; }
 
-  .pt-footer { padding: 16px 24px 24px; text-align: center; font-size: 13px; color: var(--text-muted); font-weight: 600; border-top: var(--border-width) solid var(--glass-border); background: transparent; transition: all 0.3s;}
+  /* Editable Label UI */
+  .pt-var-lbl {
+    font-size: 10px; 
+    font-weight: 700;
+    color: var(--text-muted); 
+    background: transparent; 
+    border: var(--border-width) solid transparent; 
+    border-radius: var(--radius-sm);
+    outline: none;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: inherit;
+    padding: 4px 8px; 
+    transition: all 0.2s ease;
+    cursor: pointer; 
+  }
+  .pt-var-lbl:not([readonly]) {
+    background: var(--glass-bg);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+    color: var(--text-main);
+    cursor: text;
+  }
+  .pt-var-lbl[readonly]:hover {
+    background: var(--fill-color-hover);
+  }
+  .pt-var-lbl::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  /* Normal value input below the label */
+  .pt-var-val {
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--input-bg);
+    border: var(--border-width) solid var(--input-border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    width: 100%;
+    color: var(--text-main);
+    font-family: inherit;
+    padding: 8px 10px;
+    transition: all 0.2s ease;
+  }
+  .pt-var-val:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .pt-var-val::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
 
   /* --- Notification Toast --- */
   .pt-toast {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px) scale(0.9);
-    background: var(--toast-bg);
-    backdrop-filter: blur(20px) saturate(200%);
-    -webkit-backdrop-filter: blur(20px) saturate(200%);
-    color: var(--toast-text);
-    padding: 12px 24px;
-    border-radius: 999px;
-    font-size: 14px; 
-    font-weight: 600;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 2000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(20px) scale(0.9);
+    background: var(--toast-bg); backdrop-filter: blur(20px) saturate(200%); -webkit-backdrop-filter: blur(20px) saturate(200%);
+    color: var(--toast-text); padding: 12px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2000; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 8px;
   }
-  .pt-toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
+  .pt-toast.show { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 </style>
 </head>
 <body data-theme="simple-light">
@@ -503,46 +582,57 @@
 
     <!-- RIGHT SIDE: Actions & Theme -->
     <div class="pt-header-right">
-      <button id="pt-newcode" class="pt-btn-newcode" onclick="ptToggleNewCode()">New Code</button>
-      
-      <!-- NEW CLEAR BUTTON -->
-      <button class="pt-btn-clear" onclick="ptClear(false)">Clear</button>
+      <!-- 1. New Code Icon -->
+      <button id="pt-newcode" class="pt-btn-icon" onclick="ptToggleNewCode()" title="New Code">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+      </button>
 
-      <!-- THEME ROLLER BUTTON -->
+      <!-- 2. Add to Tracker Icon -->
+      <button class="pt-btn-icon" onclick="ptAddToTracker()" title="Save to Tracker">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+      </button>
+
+      <!-- 3. View Tracker Icon -->
+      <button class="pt-btn-icon" onclick="ptOpenTracker()" title="View Tracker">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      </button>
+      
+      <!-- 4. Theme Roller BUTTON -->
       <button class="pt-btn-icon" id="themeRoller" aria-label="Cycle Theme" title="Switch Theme">
         <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></svg>
       </button>
-      
-      <button class="pt-btn-help" onclick="ptOpenHelp()" title="Help">?</button>
+
+      <!-- 5. Clear Icon -->
+      <button id="pt-btn-clear-icon" class="pt-btn-icon" onclick="ptClear(false)" title="Clear Fields">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+      </button>
     </div>
     
   </div>
 
   <div class="pt-body">
+    
     <!-- TABS 1 & 2 SHARED FORM -->
     <div id="tab12-view">
       <div class="pt-section-label">Agent Info</div>
-      <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+      <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
         <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-name" placeholder="Name" style="flex:2;min-width:120px;">
         <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-soli" placeholder="Soli" style="flex:1;min-width:70px;">
         <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-wc" placeholder="WC" style="flex:1;min-width:70px;">
         <input class="pt-input pt-input-standalone" autocomplete="off" id="pt-rc" placeholder="RC" style="flex:1;min-width:70px;">
       </div>
       
-      <!-- Tab 1 Specific Subject Button -->
       <button class="pt-btn-action pt-btn-subject" id="pt-subject-btn" onclick="ptCopySubject()">Copy Email Subject</button>
 
       <div class="pt-section-label">Request Details</div>
       <div>
-        <div class="pt-row"><span class="pt-label">Contract level to</span><input class="pt-input" autocomplete="off" id="pt-t1" placeholder="Enter value"></div>
-        <div class="pt-row"><span class="pt-label">Comm schedule to</span><input class="pt-input" autocomplete="off" id="pt-t2" placeholder="Enter value"></div>
-        <div class="pt-row"><span class="pt-label">Direct upline to</span><input class="pt-input" autocomplete="off" id="pt-t3" placeholder="Enter value"></div>
+        <div class="pt-row group-start"><span class="pt-label">Contract level to</span><input class="pt-input" autocomplete="off" id="pt-t1" placeholder="Enter value"></div>
+        <div class="pt-row group-mid"><span class="pt-label">Comm schedule to</span><input class="pt-input" autocomplete="off" id="pt-t2" placeholder="Enter value"></div>
+        <div class="pt-row group-end"><span class="pt-label">Direct upline to</span><input class="pt-input" autocomplete="off" id="pt-t3" placeholder="Enter value"></div>
       </div>
 
       <div class="pt-date-row" id="pt-date-row">
-        <span class="pt-date-label" onclick="ptToggleCal()" title="Open calendar">
-          Effective Date
-        </span>
+        <span class="pt-date-label" onclick="ptToggleCal()" title="Open calendar">Effective Date</span>
         <input class="pt-date-input" autocomplete="off" id="pt-date" placeholder="MM/DD/YYYY" oninput="ptFormatDate(this)" maxlength="10" onclick="ptToggleCal()">
         
         <div class="pt-cal-popup" id="pt-cal-popup">
@@ -555,79 +645,126 @@
         </div>
       </div>
 
-      <button id="pt-confirm" class="active" onclick="this.classList.toggle('active')">
-        Sent Confirmation Email (Burned as Source)
-      </button>
-
       <div class="pt-section-label">Work Objects</div>
       <div class="pt-pills-wrap">
-        <button class="pt-work-pill" id="pt-w1" onclick="this.classList.toggle('active')">ADDCHNGE</button>
-        <button class="pt-work-pill" id="pt-w4" onclick="this.classList.toggle('active')">ANNUALZ</button>
-        <button class="pt-work-pill" id="pt-w3" onclick="this.classList.toggle('active')">EFT</button>
-        <button class="pt-work-pill" id="pt-w2" onclick="this.classList.toggle('active')">SIMCHANGE</button>
-        <button class="pt-work-pill" id="pt-w5" onclick="this.classList.toggle('active')">ASSGNMENT</button>
+        <button class="pt-work-pill" id="pt-w1">ADDCHNGE</button>
+        <button class="pt-work-pill" id="pt-w4">ANNUALZ</button>
+        <button class="pt-work-pill" id="pt-w3">EFT</button>
+        <button class="pt-work-pill" id="pt-w2">SIMCHANGE</button>
+        <button class="pt-work-pill" id="pt-w5">ASSGNMENT</button>
       </div>
       
       <div class="pt-date-row" style="margin-bottom: 8px;">
-          <span class="pt-label" style="width: auto; font-size:14px;">LCHTERM</span>
-          <input class="pt-input" autocomplete="off" id="pt-lch" placeholder="Enter details" style="text-align: right; background: transparent; padding: 0;">
+          <span class="pt-label" style="width: auto; font-size:13px;">LCHTERM</span>
+          <input class="pt-input" autocomplete="off" id="pt-lch" placeholder="Enter details" style="text-align: right; background: transparent; padding: 0; font-size: 13px;">
       </div>
 
-      <!-- Main Action Buttons (Switched based on Tabs) -->
-      
-      <!-- Tab 1 Actions -->
+      <!-- Tab 1 & 2 Actions -->
       <div class="pt-btn-container" id="tab1-actions">
         <button class="pt-btn-action pt-btn-email" id="pt-email-btn" onclick="ptCopyEmail()">Copy Email Body</button>
         <button class="pt-btn-action pt-btn-doc" id="pt-doc-btn" onclick="ptCopyDoc('pt-doc-btn', 'Copy Documentation')">Copy Documentation</button>
       </div>
-
-      <!-- Tab 2 Actions -->
       <div class="pt-btn-container" id="tab2-actions" style="display:none;">
         <button class="pt-btn-action pt-btn-email" id="pt-email-outlook-btn" onclick="ptEmailOutlook()">Email</button>
         <button class="pt-btn-action pt-btn-doc" id="pt-doc-outlook-btn" onclick="ptCopyDoc('pt-doc-outlook-btn', 'Documentation')">Documentation</button>
-      </div>
-
-      <!-- SHARED TRACKER ROW: Unified for both Tab 1 and Tab 2 -->
-      <div class="pt-btn-container" id="shared-tracker-actions" style="margin-top: 12px;">
-        <button class="pt-btn-action pt-btn-add" onclick="ptAddToTracker()">Add to Tracker</button>
-        <button class="pt-btn-action pt-btn-view" onclick="ptOpenTracker()">Tracker</button>
       </div>
 
       <div class="pt-divider"></div>
 
       <div>
         <div class="pt-section-label">Outstanding Requirements</div>
-        <div class="pt-pills-wrap">
-          <button class="pt-req-pill" onclick="ptHandlePill('incorrect_signer', this)">Incorrect Signer</button>
-          <button class="pt-req-pill" onclick="ptHandlePill('unable_to_process', this)">Unable2Process</button>
-          <button class="pt-req-pill" onclick="ptHandlePill('submit_a_form', this)">Old Verified</button>
-          <button class="pt-req-pill" onclick="ptHandlePill('out', this)">New Verified</button>
-          <button class="pt-req-pill" onclick="ptHandlePill('standing', this)">LCHTERM</button>
+        <div class="pt-pills-wrap" id="pt-outstanding-pills">
+          <button class="pt-req-pill" onclick="ptHandlePill('incorrect_signer', this)">Incorrect Sig.</button>
+          <button class="pt-req-pill" onclick="ptHandlePill('unable_to_process', this)">Unable2Proc.</button>
+          <button class="pt-req-pill" onclick="ptHandlePill('submit_a_form', this)">Old Verif.</button>
+          <button class="pt-req-pill" onclick="ptHandlePill('out', this)">New Verif.</button>
+          <button class="pt-req-pill" onclick="ptHandlePill('standing', this)">Lchterm</button>
+          <!-- Dynamic A-D pills -->
+          <span id="pt-dynamic-req-pills" style="display: contents;"></span>
         </div>
-        <button id="pt-review" class="pt-review-btn" onclick="ptReviewFlash()">
-          Please review
-        </button>
+        
+        <div class="pt-action-row">
+          <button id="pt-review" class="pt-review-btn" onclick="ptReviewFlash()">Please review</button>
+          <button id="pt-confirm" class="active" onclick="this.classList.toggle('active')">Sent Confirmation Email</button>
+        </div>
       </div>
 
       <div class="pt-section-label">Notes</div>
+      <!-- Auto adjusting height notes area -->
       <textarea id="pt-notes" placeholder="Type additional notes here..."></textarea>
     </div>
 
-    <!-- TAB 3 VIEW: EMAIL TEMPLATE -->
-    <div id="tab3-view">
-      <textarea id="pt-template-text" placeholder="Type or paste your Outlook email template here..."></textarea>
+    <!-- TAB 3 VIEW: NOTES (New) -->
+    <div id="tab3-notes-view">
+      <!-- Auto adjusting multi-line textbox -->
+      <textarea id="pt-note-main" placeholder="Type main notes here..."></textarea>
+      
+      <div class="pt-section-label" style="margin-top: 16px;">Renamable Textboxes</div>
+      <!-- 6 Block Textboxes (2 per row) with separated inputs -->
+      <div class="pt-vars-grid">
+        <div class="pt-var-block">
+          <input class="pt-var-lbl" id="lbl1" placeholder="Label 1" readonly title="Double-click to edit label">
+          <input class="pt-var-val" id="val1" placeholder="...">
+        </div>
+        <div class="pt-var-block">
+          <input class="pt-var-lbl" id="lbl2" placeholder="Label 2" readonly title="Double-click to edit label">
+          <input class="pt-var-val" id="val2" placeholder="...">
+        </div>
+        <div class="pt-var-block">
+          <input class="pt-var-lbl" id="lbl3" placeholder="Label 3" readonly title="Double-click to edit label">
+          <input class="pt-var-val" id="val3" placeholder="...">
+        </div>
+        <div class="pt-var-block">
+          <input class="pt-var-lbl" id="lbl4" placeholder="Label 4" readonly title="Double-click to edit label">
+          <input class="pt-var-val" id="val4" placeholder="...">
+        </div>
+        <div class="pt-var-block">
+          <input class="pt-var-lbl" id="lbl5" placeholder="Label 5" readonly title="Double-click to edit label">
+          <input class="pt-var-val" id="val5" placeholder="...">
+        </div>
+        <div class="pt-var-block">
+          <input class="pt-var-lbl" id="lbl6" placeholder="Label 6" readonly title="Double-click to edit label">
+          <input class="pt-var-val" id="val6" placeholder="...">
+        </div>
+      </div>
+      
+      <!-- Dynamic E-Z buttons container -->
+      <div id="pt-ez-buttons" class="pt-pills-wrap" style="margin-bottom: 0;"></div>
     </div>
 
-  </div>
+    <!-- TAB 4 VIEW: TEMPLATE -->
+    <div id="tab4-template-view">
+      
+      <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: center; flex-wrap: wrap;">
+        <select id="pt-template-select">
+          <option value="email">Email</option>
+          <option value="notes">Notes</option>
+        </select>
+        <button class="pt-req-pill" title="Import Data" onclick="document.getElementById('pt-import-file').click()" style="display:flex; align-items:center; gap:4px; height: 35px; margin:0; background: var(--input-bg); border: var(--border-width) solid var(--input-border); color: var(--text-main);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Import Data
+        </button>
+        <button class="pt-req-pill" title="Export Data" onclick="ptExportTemplates()" style="display:flex; align-items:center; gap:4px; height: 35px; margin:0; background: var(--input-bg); border: var(--border-width) solid var(--input-border); color: var(--text-main);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg> Export Data
+        </button>
+        <input type="file" id="pt-import-file" style="display: none;" accept=".json,.txt" onchange="ptImportTemplates(event)">
+      </div>
+      
+      <div id="pt-template-notes-hint" class="pt-template-hint" style="display:none;">
+        <strong>Notes Template Guide:</strong><br>
+        Define dynamic buttons (e.g., <code>E:Greeting-Hello [N]///How are you?</code>).<br>
+        • Use <strong>A-D</strong> for Main Page Outstanding Requirements.<br>
+        • Use <strong>E-Z</strong> for Notes tab.<br>
+        • <strong>Smart Lines:</strong> If a line contains <code>[1]</code>-<code>[6]</code> and its box is empty, that whole line is automatically removed.<br>
+        • <strong>Line breaks:</strong> <code>//</code> for new line, <code>///</code> for 2 new lines.<br>
+        • <strong>Tags (Main Info):</strong> <code>[N]</code> Name, <code>[S]</code> Soli, <code>[W]</code> WC, <code>[R]</code> RC, <code>[D]</code> Date, <code>[L]</code> LCHTERM.<br>
+        • <strong>Tags (Req Details):</strong> <code>[T1]</code> Contract Lvl, <code>[T2]</code> Comm Sched, <code>[T3]</code> Direct Upline.<br>
+        • <strong>Tags (Notes Tab):</strong> <code>[1]</code> to <code>[6]</code> for Values.
+      </div>
 
-  <div class="pt-footer">Personal Tool</div>
-</div>
+      <textarea id="pt-template-email" class="pt-template-area" placeholder="Type or paste your Outlook email template here..."></textarea>
+      <textarea id="pt-template-notes" class="pt-template-area" placeholder="Write your notes template here..." style="display:none;"></textarea>
+    </div>
 
-<!-- Help Modal -->
-<div class="pt-modal-overlay" id="pt-help-overlay" onclick="if(event.target===this) ptCloseHelp()">
-  <div class="pt-help-modal">
-    <button class="pt-help-close" onclick="ptCloseHelp()">✕</button>
-    <img id="pt-help-img" src="" alt="Help">
   </div>
 </div>
 
@@ -642,9 +779,7 @@
         <button onclick="ptCloseTracker()">✕</button>
       </div>
     </div>
-    <div class="pt-tracker-body" id="pt-tracker-body">
-      <!-- Tracker items will be rendered here -->
-    </div>
+    <div class="pt-tracker-body" id="pt-tracker-body"></div>
   </div>
 </div>
 
@@ -661,11 +796,10 @@
   calYear = now.getFullYear();
   calMonth = now.getMonth();
 
-  // ---------- Toast Notification Logic ----------
+  // ---------- Toast Notification ----------
   let toastTimer;
   const toastEl = document.getElementById('pt-toast');
   const toastMsg = document.getElementById('pt-toastMsg');
-  
   function showToast(msg) {
     clearTimeout(toastTimer);
     toastMsg.textContent = msg;
@@ -699,74 +833,348 @@
     applyTheme(currentThemeIndex, true);
   });
 
-  // ---------- Tab Cycle Scroller Logic ----------
+  // ---------- Tab Cycle Scroller Logic (4 Tabs) ----------
   const tabIcon = document.getElementById('tabIcon');
-  const notesArea = document.getElementById('pt-notes');
   const tabData = [
-    { id: 1, name: 'Home', icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>' }, // Home/Main Icon
-    { id: 2, name: 'Outlook', icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>' }, // Mail Icon
-    { id: 3, name: 'Email Template', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>' } // Text File Icon
+    { id: 1, name: 'Home', icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>' },
+    { id: 2, name: 'Outlook', icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>' },
+    { id: 3, name: 'Notes', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>' },
+    { id: 4, name: 'Template', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line>' }
   ];
   let currentTabIdx = 0;
 
-  window.ptCycleTab = function() {
-    currentTabIdx = (currentTabIdx + 1) % tabData.length;
+  window.ptCycleTab = function(dir = 1) {
+    currentTabIdx = (currentTabIdx + dir + tabData.length) % tabData.length;
     ptSwitchTab(currentTabIdx + 1, true);
   };
 
   window.ptSwitchTab = function(tabIndex, notify = false) {
-    const tab = tabData[tabIndex - 1];
+    currentTabIdx = tabIndex - 1;
+    const tab = tabData[currentTabIdx];
     tabIcon.innerHTML = tab.icon;
     if(notify) { showToast(tab.name); }
 
     const view12 = document.getElementById('tab12-view');
-    const view3 = document.getElementById('tab3-view');
+    const viewNotes = document.getElementById('tab3-notes-view');
+    const viewTpl = document.getElementById('tab4-template-view');
+    
     const subjectBtn = document.getElementById('pt-subject-btn');
     const actions1 = document.getElementById('tab1-actions');
     const actions2 = document.getElementById('tab2-actions');
 
-    if (tabIndex === 1) { // Main
-      view12.style.display = 'block';
-      view3.style.display = 'none';
-      subjectBtn.style.display = 'flex';
-      actions1.style.display = 'flex';
-      actions2.style.display = 'none';
-      notesArea.placeholder = "Type additional notes here...";
-    } else if (tabIndex === 2) { // Outlook App User
-      view12.style.display = 'block';
-      view3.style.display = 'none';
-      subjectBtn.style.display = 'none'; // No subject btn here
-      actions1.style.display = 'none';
-      actions2.style.display = 'flex';
-      notesArea.placeholder = "Type additional notes here...";
-    } else if (tabIndex === 3) { // Email Template
-      view12.style.display = 'none';
-      view3.style.display = 'flex';
+    view12.style.display = 'none';
+    viewNotes.style.display = 'none';
+    viewTpl.style.display = 'none';
+
+    if (tabIndex === 1 || tabIndex === 2) {
+      view12.style.display = 'flex';
+      if (tabIndex === 1) { 
+        subjectBtn.style.display = 'flex';
+        actions1.style.display = 'flex';
+        actions2.style.display = 'none';
+      } else { 
+        subjectBtn.style.display = 'none';
+        actions1.style.display = 'none';
+        actions2.style.display = 'flex';
+      }
+    } else if (tabIndex === 3) { 
+      viewNotes.style.display = 'flex';
+    } else if (tabIndex === 4) { 
+      viewTpl.style.display = 'flex';
     }
   };
   
-  // Initialize the first tab on load
-  ptSwitchTab(1);
+  ptSwitchTab(1); 
 
-  // ---------- Template Autosave Logic ----------
-  const templateEl = document.getElementById('pt-template-text');
-  templateEl.value = localStorage.getItem('hcEmailTemplate') || '';
-  templateEl.addEventListener('input', function() {
-    localStorage.setItem('hcEmailTemplate', this.value);
+  // ---------- Template Autosave & Event Listeners ----------
+  const tplSelect = document.getElementById('pt-template-select');
+  const tplEmail = document.getElementById('pt-template-email');
+  const tplNotes = document.getElementById('pt-template-notes');
+  const tplHint = document.getElementById('pt-template-notes-hint');
+  
+  tplEmail.value = localStorage.getItem('hcEmailTemplate') || '';
+  tplNotes.value = localStorage.getItem('hcNotesTemplate') || '';
+
+  tplSelect.addEventListener('change', function(e) {
+    if(e.target.value === 'email') {
+      tplEmail.style.display = 'block';
+      tplNotes.style.display = 'none';
+      tplHint.style.display = 'none';
+    } else {
+      tplEmail.style.display = 'none';
+      tplNotes.style.display = 'block';
+      tplHint.style.display = 'block';
+    }
   });
 
-  // ---------- Form Logic ----------
+  tplEmail.addEventListener('input', function() { localStorage.setItem('hcEmailTemplate', this.value); });
+  tplNotes.addEventListener('input', function() { 
+    localStorage.setItem('hcNotesTemplate', this.value); 
+    ptParseNotesTemplate(); 
+  });
+
+  // Export Data - Only exports Templates, custom Label names, and Tracker
+  window.ptExportTemplates = function() {
+    const keysToExport = [
+      'hcEmailTemplate',
+      'hcNotesTemplate',
+      'hcTrackerData',
+      'hc_lbl1', 'hc_lbl2', 'hc_lbl3', 'hc_lbl4', 'hc_lbl5', 'hc_lbl6'
+    ];
+    
+    const data = {};
+    keysToExport.forEach(key => {
+      const val = localStorage.getItem(key);
+      if (val !== null) {
+        data[key] = val;
+      }
+    });
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'hc_tool_backup.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Data exported!');
+  };
+
+  // Import Data - Restores the exported keys 
+  window.ptImportTemplates = function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        
+        // Backwards compatibility with old export format (template only)
+        if (data.email !== undefined && !data['hcEmailTemplate']) data['hcEmailTemplate'] = data.email;
+        if (data.notes !== undefined && !data['hcNotesTemplate']) data['hcNotesTemplate'] = data.notes;
+
+        for (const key in data) {
+          if (key.startsWith('hc')) {
+            localStorage.setItem(key, data[key]);
+            
+            // Re-apply to DOM UI
+            if (key === 'hcEmailTemplate') {
+                document.getElementById('pt-template-email').value = data[key];
+            } else if (key === 'hcNotesTemplate') {
+                document.getElementById('pt-template-notes').value = data[key];
+            } else if (key.startsWith('hc_')) {
+                const elId = key.substring(3);
+                const el = document.getElementById(elId);
+                if (el) el.value = data[key];
+            }
+          }
+        }
+        
+        ptParseNotesTemplate(); // Refresh UI dynamic buttons
+        if (typeof ptRenderTracker === 'function') ptRenderTracker(); // update tracker background memory
+        showToast('Data imported!');
+      } catch (err) {
+        showToast('Invalid file format. Please use the exported .json file.');
+      }
+      event.target.value = ''; // Reset input
+    };
+    reader.readAsText(file);
+  };
+
+  // State Persistence for all Textboxes across Tabs
+  const allFields = [
+    'pt-name', 'pt-soli', 'pt-wc', 'pt-rc', 'pt-t1', 'pt-t2', 'pt-t3', 'pt-date', 'pt-lch',
+    'lbl1','val1','lbl2','val2','lbl3','val3','lbl4','val4','lbl5','val5','lbl6','val6', 
+    'pt-note-main', 'pt-notes'
+  ];
+
+  allFields.forEach(id => {
+      const el = document.getElementById(id);
+      if(el) {
+          el.value = localStorage.getItem('hc_' + id) || '';
+          
+          el.addEventListener('input', () => {
+             // Defer the save to ensure custom input formatters (like uppercase) run first
+             setTimeout(() => localStorage.setItem('hc_' + id, el.value), 0);
+          });
+          
+          // Auto remove space before and after inputted text on blur
+          if(id.startsWith('val')) {
+            el.addEventListener('blur', function() {
+              this.value = this.value.trim();
+              localStorage.setItem('hc_' + id, this.value);
+            });
+          }
+          
+          // Double-click edit lock logic & Auto-trim for labels
+          if(id.startsWith('lbl')) {
+            el.addEventListener('dblclick', function() {
+              this.removeAttribute('readonly');
+              this.focus();
+            });
+            el.addEventListener('blur', function() {
+              this.value = this.value.trim();
+              localStorage.setItem('hc_' + id, this.value);
+              this.setAttribute('readonly', true);
+            });
+          }
+      }
+  });
+
+  // State Persistence for Work Objects (Pills)
+  const workPills = ['pt-w1', 'pt-w2', 'pt-w3', 'pt-w4', 'pt-w5'];
+  workPills.forEach(id => {
+     const el = document.getElementById(id);
+     if(el) {
+         if (localStorage.getItem('hc_pill_' + id) === 'active') el.classList.add('active');
+         el.addEventListener('click', function() {
+             this.classList.toggle('active');
+             localStorage.setItem('hc_pill_' + id, this.classList.contains('active') ? 'active' : '');
+         });
+     }
+  });
+
+  // State Persistence for "New Code" Button
+  const newCodeBtn = document.getElementById('pt-newcode');
+  if (localStorage.getItem('hc_pill_pt-newcode') === 'active') newCodeBtn.classList.add('active');
+
+  // Dynamic Template Parsing (E-Z for Notes Tab, A-D for Main Tab)
+  const dynClasses = ['btn-dyn-1', 'btn-dyn-2', 'btn-dyn-3', 'btn-dyn-4', 'btn-dyn-5', 'btn-dyn-6'];
+  
+  function ptParseNotesTemplate() {
+    const template = localStorage.getItem('hcNotesTemplate') || '';
+    const regex = /^([A-Z]):([^-]+)-(.*)$/gm;
+    let match;
+    const ezContainer = document.getElementById('pt-ez-buttons');
+    const reqContainer = document.getElementById('pt-dynamic-req-pills');
+    
+    if(ezContainer) ezContainer.innerHTML = '';
+    if(reqContainer) reqContainer.innerHTML = '';
+
+    // Create a color deck to ensure no duplicates until all colors are used
+    let colorPool = [];
+    let lastColor = null;
+
+    while ((match = regex.exec(template)) !== null) {
+      const letter = match[1].toUpperCase();
+      const btnName = match[2].trim();
+      const content = match[3].trim();
+
+      const btn = document.createElement('button');
+      btn.className = 'pt-req-pill';
+      btn.textContent = btnName;
+
+      if (letter >= 'E' && letter <= 'Z') {
+        // Replenish and shuffle color deck if empty
+        if (colorPool.length === 0) {
+          colorPool = [...dynClasses];
+          // Fisher-Yates shuffle
+          for (let i = colorPool.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [colorPool[i], colorPool[j]] = [colorPool[j], colorPool[i]];
+          }
+          // Safeguard: Ensure the newly shuffled deck doesn't start with the color that just ended the last deck
+          if (colorPool[colorPool.length - 1] === lastColor && colorPool.length > 1) {
+            colorPool.unshift(colorPool.pop()); 
+          }
+        }
+        
+        lastColor = colorPool.pop();
+        btn.classList.add(lastColor);
+        
+        btn.onclick = (e) => ptExecuteTemplate(content, e.target);
+        if(ezContainer) ezContainer.appendChild(btn);
+      } else if (letter >= 'A' && letter <= 'D') {
+        btn.onclick = (e) => ptExecuteTemplate(content, e.target, true);
+        if(reqContainer) reqContainer.appendChild(btn);
+      }
+    }
+  }
+
+  window.ptExecuteTemplate = function(content, btn, isReqPill = false) {
+    if(isReqPill) {
+      document.querySelectorAll('.pt-req-pill').forEach(p => p.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    let parsed = content.replace(/\/\/\//g, '\n\n').replace(/\/\//g, '\n');
+    
+    // Notes tab variables
+    const v1 = document.getElementById('val1').value || '';
+    const v2 = document.getElementById('val2').value || '';
+    const v3 = document.getElementById('val3').value || '';
+    const v4 = document.getElementById('val4').value || '';
+    const v5 = document.getElementById('val5').value || '';
+    const v6 = document.getElementById('val6').value || '';
+
+    // Smart Lines Conditional Logic:
+    let lines = parsed.split('\n');
+    lines = lines.filter(line => {
+      if (line.includes('[1]') && !v1) return false;
+      if (line.includes('[2]') && !v2) return false;
+      if (line.includes('[3]') && !v3) return false;
+      if (line.includes('[4]') && !v4) return false;
+      if (line.includes('[5]') && !v5) return false;
+      if (line.includes('[6]') && !v6) return false;
+      return true;
+    });
+    parsed = lines.join('\n');
+
+    // Main tab variables
+    const nameStr = document.getElementById('pt-name').value || '';
+    const soliStr = document.getElementById('pt-soli').value || '';
+    const wcStr   = document.getElementById('pt-wc').value || '';
+    const rcStr   = document.getElementById('pt-rc').value || '';
+    const dateStr = document.getElementById('pt-date').value || '';
+    const t1Str   = document.getElementById('pt-t1').value || '';
+    const t2Str   = document.getElementById('pt-t2').value || '';
+    const t3Str   = document.getElementById('pt-t3').value || '';
+    const lchStr  = document.getElementById('pt-lch').value || '';
+
+    parsed = parsed.replace(/\[1\]/g, v1)
+                   .replace(/\[2\]/g, v2)
+                   .replace(/\[3\]/g, v3)
+                   .replace(/\[4\]/g, v4)
+                   .replace(/\[5\]/g, v5)
+                   .replace(/\[6\]/g, v6)
+                   .replace(/\[N\]/gi, nameStr)
+                   .replace(/\[S\]/gi, soliStr)
+                   .replace(/\[W\]/gi, wcStr)
+                   .replace(/\[R\]/gi, rcStr)
+                   .replace(/\[D\]/gi, dateStr)
+                   .replace(/\[T1\]/gi, t1Str)
+                   .replace(/\[T2\]/gi, t2Str)
+                   .replace(/\[T3\]/gi, t3Str)
+                   .replace(/\[L\]/gi, lchStr);
+
+    ptCopy(parsed);
+    
+    const origText = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = origText; }, 1400);
+  };
+
+  ptParseNotesTemplate(); 
+
+  // ---------- Form Uppercase logic ----------
   document.getElementById('pt-soli').addEventListener('input', function() { if (this.value) document.getElementById('pt-wc').value = ''; });
   document.getElementById('pt-wc').addEventListener('input', function() { if (this.value) document.getElementById('pt-soli').value = ''; });
 
   document.querySelectorAll('.pt-input, .pt-input-standalone').forEach(el => {
-    if(el.id !== 'pt-date'){
+    if(el.id !== 'pt-date' && !el.classList.contains('no-upper')){
         el.addEventListener('input', function() {
-        const pos = this.selectionStart;
-        this.value = this.value.toUpperCase();
-        this.setSelectionRange(pos, pos);
+          const pos = this.selectionStart;
+          this.value = this.value.toUpperCase();
+          this.setSelectionRange(pos, pos);
+          // Auto-save uppercase value directly
+          if(el.id) localStorage.setItem('hc_' + el.id, this.value);
         });
-        el.addEventListener('blur', function() { this.value = this.value.trim(); });
+        el.addEventListener('blur', function() { 
+          this.value = this.value.trim(); 
+          if(el.id) localStorage.setItem('hc_' + el.id, this.value);
+        });
     }
   });
 
@@ -776,36 +1184,34 @@
     if (!row.contains(e.target)) popup.classList.remove('open');
   });
 
+  // ---------- Keyboard Navigation Logic ----------
   document.addEventListener('keydown', function(e) {
+    const activeEl = document.activeElement;
+    const activeTag = activeEl ? activeEl.tagName.toLowerCase() : '';
+    const isTyping = (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select');
+
     if (e.key === 'Escape') {
-      ptCloseHelp();
+      if(activeEl) activeEl.blur();
       ptCloseTracker();
     }
-  });
-
-  window.ptOpenHelp = function() { document.getElementById('pt-help-overlay').classList.add('open'); };
-
-  window.ptCloseHelp = function() { 
-    const overlay = document.getElementById('pt-help-overlay');
-    const helpImg = document.getElementById('pt-help-img');
     
-    // Store the original image so we can put it back later
-    const originalSrc = helpImg.src; 
+    if (!isTyping) {
+      if (e.key === 'ArrowRight') ptCycleTab(1);
+      if (e.key === 'ArrowLeft') ptCycleTab(-1);
+    }
 
-    // 1. Swap to the second image instantly
-    helpImg.src = ""; 
-
-    // 2. Wait 600 milliseconds (0.6 seconds), then close the modal
-    setTimeout(function() {
-      overlay.classList.remove('open');
-      
-      // 3. Reset the image back to the original gorilla AFTER the modal fades out
-      setTimeout(function() {
-        helpImg.src = originalSrc;
-      }, 30); 
-      
-    }, 30); // Change '600' to make the flash longer or shorter
-  };
+    if (e.key === 'Enter') {
+      if (isTyping && activeTag === 'input') {
+        e.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input:not([type="hidden"]):not([disabled])'))
+                            .filter(el => el.offsetParent !== null);
+        const idx = inputs.indexOf(activeEl);
+        if (idx > -1 && idx < inputs.length - 1) {
+          inputs[idx + 1].focus();
+        }
+      }
+    }
+  });
 
   function ptRenderCal() {
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -843,7 +1249,9 @@
       el.addEventListener('click', function() {
         const mm = String(calMonth + 1).padStart(2, '0');
         const dd = String(d).padStart(2, '0');
-        document.getElementById('pt-date').value = mm + '/' + dd + '/' + calYear;
+        const formattedDate = mm + '/' + dd + '/' + calYear;
+        document.getElementById('pt-date').value = formattedDate;
+        localStorage.setItem('hc_pt-date', formattedDate); // Save state manually
         document.getElementById('pt-cal-popup').classList.remove('open');
         ptRenderCal();
       });
@@ -890,15 +1298,38 @@
     setTimeout(() => { btn.textContent = orig; btn.style.background = oldBg; btn.style.color = ''; }, 1400);
   }
 
-  window.ptToggleNewCode = function() { document.getElementById('pt-newcode').classList.toggle('active'); };
+  window.ptToggleNewCode = function() { 
+    const btn = document.getElementById('pt-newcode');
+    btn.classList.toggle('active'); 
+    localStorage.setItem('hc_pill_pt-newcode', btn.classList.contains('active') ? 'active' : '');
+  };
 
   window.ptClear = function(silent = false) {
-    document.querySelectorAll('.pt-input, .pt-input-standalone, #pt-date').forEach(el => el.value = '');
-    document.querySelectorAll('.pt-req-pill').forEach(el => el.classList.remove('selected'));
-    document.querySelectorAll('.pt-work-pill').forEach(el => el.classList.remove('active'));
-    document.getElementById('pt-newcode').classList.remove('active');
-    document.getElementById('pt-confirm').classList.add('active');
+    // Clear Input values but preserve labels
+    document.querySelectorAll('.pt-input:not(.no-upper), .pt-input-standalone, #pt-date, .pt-var-lbl, .pt-var-val').forEach(el => {
+      if (!el.classList.contains('pt-var-lbl')) {
+        el.value = '';
+        if(el.id) localStorage.setItem('hc_' + el.id, '');
+      }
+    });
+    
     document.getElementById('pt-notes').value = '';
+    document.getElementById('pt-note-main').value = '';
+    localStorage.setItem('hc_pt-notes', '');
+    localStorage.setItem('hc_pt-note-main', '');
+
+    // Reset visually and structurally active Pills
+    document.querySelectorAll('.pt-req-pill').forEach(el => el.classList.remove('selected'));
+    document.querySelectorAll('.pt-work-pill').forEach(el => {
+      el.classList.remove('active');
+      localStorage.setItem('hc_pill_' + el.id, '');
+    });
+    
+    document.getElementById('pt-newcode').classList.remove('active');
+    localStorage.setItem('hc_pill_pt-newcode', '');
+    
+    document.getElementById('pt-confirm').classList.add('active');
+
     if(!silent) showToast('Fields Cleared');
   };
 
@@ -1126,11 +1557,7 @@
     }
 
     let finalBody = before.join('\r\n');
-    
-    if (finalBody.length > 0) {
-      finalBody += '\r\n\r\n'; 
-    }
-    
+    if (finalBody.length > 0) { finalBody += '\r\n\r\n'; }
     finalBody += generatedBody;
     
     if (after.length > 0) {
@@ -1195,7 +1622,6 @@
       const el = document.createElement('div');
       el.className = 'pt-tracker-item';
       
-      // Escape content for safe rendering
       const safeDate = item.date.replace(/"/g, '&quot;');
       const safeCodes = item.codes.replace(/"/g, '&quot;');
       const safeDoc = item.doc.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -1265,24 +1691,20 @@
     let trackerData = JSON.parse(localStorage.getItem('hcTrackerData') || '[]');
     if(trackerData.length === 0) { showToast('No data to download'); return; }
 
-    // Strip out the extra spaces on each line AND collapse multiple blank lines into a single line
     const formattedData = trackerData.map(item => ({
       "Date": item.date,
       "Codes": item.codes,
       "Documentation": item.doc.replace(/^[ \u00A0]+/gm, '').replace(/[\r\n]+/g, '\n')
     }));
 
-    // Convert to Worksheet
     const ws = XLSX.utils.json_to_sheet(formattedData);
 
-    // Enforce Column Widths to Autofit/Prevent Bleed (wch = character width)
     ws['!cols'] = [
-      { wch: 12 },   // Date Column Width
-      { wch: 30 },   // Codes Column Width
-      { wch: 100 }   // Documentation Column Width
+      { wch: 12 },   
+      { wch: 30 },   
+      { wch: 100 }   
     ];
 
-    // Apply styles to all cells so that text wrapping works automatically
     const range = XLSX.utils.decode_range(ws['!ref']);
     for (let R = range.s.r; R <= range.e.r; ++R) {
       for (let C = range.s.c; C <= range.e.c; ++C) {
@@ -1291,7 +1713,6 @@
         
         if (!ws[cell_ref]) continue;
 
-        // Base styling for all cells (Align top, wrap text)
         ws[cell_ref].s = {
           alignment: {
             vertical: "top",
@@ -1299,7 +1720,6 @@
           }
         };
 
-        // Header specific styling (Row 0)
         if (R === 0) {
           ws[cell_ref].s.font = { bold: true };
           ws[cell_ref].s.alignment.horizontal = "center";
@@ -1308,11 +1728,9 @@
       }
     }
 
-    // Create a new Workbook and append the sheet
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Processed Tracker");
 
-    // Automatically trigger the download (Outputs a true .xlsx file)
     XLSX.writeFile(wb, "Processed_Tracker.xlsx");
   };
 
