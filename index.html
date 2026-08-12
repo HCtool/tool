@@ -45,13 +45,13 @@
     --btn-view-bg: #475569;  
     --btn-view-text: #ffffff;
 
-    /* Dynamic Button Theme Colors (Light) */
-    --dyn-1-bg: #e0e7ff; --dyn-1-txt: #3730a3; /* Indigo */
-    --dyn-2-bg: #dcfce7; --dyn-2-txt: #166534; /* Green */
-    --dyn-3-bg: #fef9c3; --dyn-3-txt: #854d0e; /* Yellow */
-    --dyn-4-bg: #ffedd5; --dyn-4-txt: #9a3412; /* Orange */
-    --dyn-5-bg: #f3e8ff; --dyn-5-txt: #6b21a8; /* Purple */
-    --dyn-6-bg: #ffe4e6; --dyn-6-txt: #9f1239; /* Rose */
+    /* Dynamic Button Theme Colors (Light) - Unique Text Colors */
+    --dyn-1-txt: #2563eb; /* Blue */
+    --dyn-2-txt: #16a34a; /* Green */
+    --dyn-3-txt: #d97706; /* Amber */
+    --dyn-4-txt: #ea580c; /* Orange */
+    --dyn-5-txt: #9333ea; /* Purple */
+    --dyn-6-txt: #db2777; /* Pink */
 
     /* Squarer modern look */
     --radius-sm: 6px; 
@@ -100,13 +100,13 @@
     --btn-view-bg: #94a3b8;  
     --btn-view-text: #000000;
 
-    /* Dynamic Button Theme Colors (Dark) */
-    --dyn-1-bg: rgba(79, 70, 229, 0.2); --dyn-1-txt: #a5b4fc;
-    --dyn-2-bg: rgba(22, 163, 74, 0.2); --dyn-2-txt: #86efac;
-    --dyn-3-bg: rgba(202, 138, 4, 0.2); --dyn-3-txt: #fde047;
-    --dyn-4-bg: rgba(234, 88, 12, 0.2); --dyn-4-txt: #fdba74;
-    --dyn-5-bg: rgba(147, 51, 234, 0.2); --dyn-5-txt: #d8b4fe;
-    --dyn-6-bg: rgba(225, 29, 72, 0.2); --dyn-6-txt: #fda4af;
+    /* Dynamic Button Theme Colors (Dark) - Unique Text Colors */
+    --dyn-1-txt: #60a5fa; /* Blue */
+    --dyn-2-txt: #4ade80; /* Green */
+    --dyn-3-txt: #fbbf24; /* Yellow */
+    --dyn-4-txt: #fb923c; /* Orange */
+    --dyn-5-txt: #c084fc; /* Purple */
+    --dyn-6-txt: #f472b6; /* Pink */
 
     --toast-bg: #e4e4e7;
     --toast-text: #18181b;
@@ -385,19 +385,35 @@
   body[data-theme="simple-dark"] .pt-req-pill.selected { color: #000; }
 
   /* --- DYNAMIC BUTTON CLASSES (Theme-Aware) --- */
-  .pt-req-pill.btn-dyn-1 { background: var(--dyn-1-bg); color: var(--dyn-1-txt); }
-  .pt-req-pill.btn-dyn-2 { background: var(--dyn-2-bg); color: var(--dyn-2-txt); }
-  .pt-req-pill.btn-dyn-3 { background: var(--dyn-3-bg); color: var(--dyn-3-txt); }
-  .pt-req-pill.btn-dyn-4 { background: var(--dyn-4-bg); color: var(--dyn-4-txt); }
-  .pt-req-pill.btn-dyn-5 { background: var(--dyn-5-bg); color: var(--dyn-5-txt); }
-  .pt-req-pill.btn-dyn-6 { background: var(--dyn-6-bg); color: var(--dyn-6-txt); }
+  .pt-req-pill.btn-dyn-1 { background: var(--btn-bg); color: var(--dyn-1-txt); }
+  .pt-req-pill.btn-dyn-2 { background: var(--btn-bg); color: var(--dyn-2-txt); }
+  .pt-req-pill.btn-dyn-3 { background: var(--btn-bg); color: var(--dyn-3-txt); }
+  .pt-req-pill.btn-dyn-4 { background: var(--btn-bg); color: var(--dyn-4-txt); }
+  .pt-req-pill.btn-dyn-5 { background: var(--btn-bg); color: var(--dyn-5-txt); }
+  .pt-req-pill.btn-dyn-6 { background: var(--btn-bg); color: var(--dyn-6-txt); }
 
-  .pt-req-pill.btn-dyn-1:hover { background: var(--dyn-1-bg); filter: var(--hover-filter); }
-  .pt-req-pill.btn-dyn-2:hover { background: var(--dyn-2-bg); filter: var(--hover-filter); }
-  .pt-req-pill.btn-dyn-3:hover { background: var(--dyn-3-bg); filter: var(--hover-filter); }
-  .pt-req-pill.btn-dyn-4:hover { background: var(--dyn-4-bg); filter: var(--hover-filter); }
-  .pt-req-pill.btn-dyn-5:hover { background: var(--dyn-5-bg); filter: var(--hover-filter); }
-  .pt-req-pill.btn-dyn-6:hover { background: var(--dyn-6-bg); filter: var(--hover-filter); }
+  .pt-req-pill.btn-dyn-1:hover { background: var(--fill-color-hover); color: var(--dyn-1-txt); }
+  .pt-req-pill.btn-dyn-2:hover { background: var(--fill-color-hover); color: var(--dyn-2-txt); }
+  .pt-req-pill.btn-dyn-3:hover { background: var(--fill-color-hover); color: var(--dyn-3-txt); }
+  .pt-req-pill.btn-dyn-4:hover { background: var(--fill-color-hover); color: var(--dyn-4-txt); }
+  .pt-req-pill.btn-dyn-5:hover { background: var(--fill-color-hover); color: var(--dyn-5-txt); }
+  .pt-req-pill.btn-dyn-6:hover { background: var(--fill-color-hover); color: var(--dyn-6-txt); }
+
+  .pt-req-pill.btn-dyn-1.selected { background: var(--dyn-1-txt); color: #ffffff; }
+  .pt-req-pill.btn-dyn-2.selected { background: var(--dyn-2-txt); color: #ffffff; }
+  .pt-req-pill.btn-dyn-3.selected { background: var(--dyn-3-txt); color: #ffffff; }
+  .pt-req-pill.btn-dyn-4.selected { background: var(--dyn-4-txt); color: #ffffff; }
+  .pt-req-pill.btn-dyn-5.selected { background: var(--dyn-5-txt); color: #ffffff; }
+  .pt-req-pill.btn-dyn-6.selected { background: var(--dyn-6-txt); color: #ffffff; }
+
+  body[data-theme="simple-dark"] .pt-req-pill.btn-dyn-1.selected,
+  body[data-theme="simple-dark"] .pt-req-pill.btn-dyn-2.selected,
+  body[data-theme="simple-dark"] .pt-req-pill.btn-dyn-3.selected,
+  body[data-theme="simple-dark"] .pt-req-pill.btn-dyn-4.selected,
+  body[data-theme="simple-dark"] .pt-req-pill.btn-dyn-5.selected,
+  body[data-theme="simple-dark"] .pt-req-pill.btn-dyn-6.selected {
+    color: #000000;
+  }
 
   /* Main Action Buttons */
   .pt-btn-container { display: flex; gap: 12px; margin-top: 16px; }
